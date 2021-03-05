@@ -85,7 +85,6 @@ function signup(firstName, lastName, username, password, terms) {
     firstName,
     lastName,
     userName: username,
-    role: username.substring(0, 5).toLowerCase() === "admin" ? "2" : "1",
     password,
     terms,
   }).then((res) => {
