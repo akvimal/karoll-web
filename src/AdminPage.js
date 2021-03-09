@@ -11,15 +11,26 @@ export default class AdminPage extends React.Component {
       users: null,
       userId: "",
       adminRole: "",
+      roles: [],
     };
   }
 
   componentDidMount() {
     userService.getAll().then((users) => this.setState({ users }));
+    this.api();
   }
   onroleHandler = (value, id) => {
     this.setState({ userId: id });
     this.setState({ adminRole: value });
+  };
+
+  api = () => {
+    API.get(`/api/roles`).then((res) => {
+      const arrcpy = [...this.state.roles];
+      arrcpy.push(res.data);
+      this.setState({ roles: arrcpy });
+      // console.log(this.state.roles[0]);
+    });
   };
 
   onUpdateHandler = () => {
@@ -38,6 +49,7 @@ export default class AdminPage extends React.Component {
   render() {
     const { users } = this.state;
     console.log(users);
+    console.log(this.state.roles[0]);
     return (
       <div>
         <h1>Admin</h1>
@@ -59,13 +71,23 @@ export default class AdminPage extends React.Component {
                         <Form.Label>Change role:</Form.Label>
                         <FormControl
                           as="select"
-                          defaultValue={user.roles[0].Role.name}
                           onChange={(e) =>
                             this.onroleHandler(e.target.value, user.id)
                           }
                         >
-                          <option>User</option>
-                          <option>Admin</option>
+                          {this.state.roles[0] === undefined
+                            ? ""
+                            : this.state.roles[0].map((role) => (
+                                <option
+                                  selected={
+                                    user.roles[0].Role.name === role.name
+                                      ? true
+                                      : false
+                                  }
+                                >
+                                  {role.name}
+                                </option>
+                              ))}
                         </FormControl>
                       </Form.Group>
                     </Col>
