@@ -54,7 +54,7 @@ function verify(username, token) {
   //     headers: { 'Content-Type': 'application/json' },
   //     body: JSON.stringify({ username, token })
   // };
-
+  console.log(username, token);
   return API.post(`/api/auth/verify-token`, { username, token }).then(
     (result) => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
