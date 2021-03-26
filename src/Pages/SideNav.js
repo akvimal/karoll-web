@@ -18,7 +18,7 @@ function MainListItems(props) {
     {
       name: "Objectives",
       icons: <ListAltIcon></ListAltIcon>,
-      path: "/objectives",
+      path: "objectives",
     },
     { name: "Skills", icons: <HowToRegIcon></HowToRegIcon>, path: "skills" },
     {

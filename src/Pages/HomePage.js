@@ -45,6 +45,10 @@ import Courses from "./Solutions/Courses";
 import Settings from "./Solutions/Settings";
 import Projects from "./Solutions/Projects";
 import AdminPage from "./AdminPage";
+import Content from "./Solutions/Content";
+import Evaluation from "./Solutions/Evaluation";
+import CreateSkill from "./Solutions/CreateSkill";
+import CreateJobRoles from "./Solutions/CreateJobRoles";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -339,25 +343,25 @@ function HomePage(props) {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Router history={history}>
-          <Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={12} lg={12}>
-                <Paper>
-                  <Route path="/objectives" component={Objectives} />
-                  <Route path="/skills" component={Skills} />
-                  <PrivateRoute
-                    path="/admin"
-                    roles={[Role.Admin]}
-                    component={AdminPage}
-                  />
-                  <Route path="/jobroles" component={JobRoles} />
-                  <Route path="/certifications" component={Certifications} />
-                  <Route path="/projects" component={Projects} />
-                  <Route path="/courses" component={Courses} />
-                  <Route path="/settings" component={Settings} />
-                </Paper>
-              </Grid>
-              {/* <Grid item xs={12} md={4} lg={3}>
+          <Route path="/objectives" component={Objectives} />
+          <Route path="/skills" component={Skills} />
+          <PrivateRoute
+            path="/admin"
+            roles={[Role.Admin]}
+            component={AdminPage}
+          />
+          <Route path="/createskill" component={CreateSkill} />
+          <Route path="/content" component={Content} />
+          <Route path="/evaluation" component={Evaluation} />
+          <Route path="/jobroles" component={JobRoles} />
+          <Route path="/createjobroles" component={CreateJobRoles} />
+
+          <Route path="/certifications" component={Certifications} />
+          <Route path="/projects" component={Projects} />
+          <Route path="/courses" component={Courses} />
+          <Route path="/settings" component={Settings} />
+
+          {/* <Grid item xs={12} md={4} lg={3}>
                 <Paper className={fixedHeightPaper}>
 
                 </Paper>
@@ -365,11 +369,10 @@ function HomePage(props) {
               <Grid item xs={12}>
                 <Paper className={classes.paper}></Paper>
               </Grid> */}
-            </Grid>
-            <Box pt={4}>
-              <Copyright />
-            </Box>
-          </Container>
+
+          <Box pt={4}>
+            <Copyright />
+          </Box>
         </Router>
       </main>
       {renderMobileMenu}

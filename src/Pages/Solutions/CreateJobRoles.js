@@ -1,13 +1,13 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-function Settings() {
+function CreateJobRoles() {
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
-        Settings
+        Create Job Role
       </Typography>
     </div>
   );
 }
 
-export default Settings;
+export default CreateJobRoles;

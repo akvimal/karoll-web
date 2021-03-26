@@ -1,13 +1,13 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-function Settings() {
+function Evaluation() {
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
-        Settings
+        Evaluation
       </Typography>
     </div>
   );
 }
 
-export default Settings;
+export default Evaluation;
