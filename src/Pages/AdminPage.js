@@ -49,7 +49,7 @@ export default class AdminPage extends React.Component {
   render() {
     const { users } = this.state;
     console.log(users);
-    console.log(this.state.roles[0]);
+    console.log(this.state.roles);
     const userName = JSON.parse(localStorage.getItem("currentUser"));
     console.log(userName);
     return (
