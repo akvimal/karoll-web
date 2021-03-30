@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography, Grid, Button, TextField } from "@material-ui/core";
 import { Router, Route, Link, Redirect } from "react-router-dom";
+import ListProject from "../../components/ListProject";
 function Projects() {
   return (
     <div style={{ padding: "20px" }}>
@@ -75,6 +76,7 @@ function Projects() {
           </Button>
         </Grid>
       </Grid>
+      <ListProject></ListProject>
     </div>
   );
 }

@@ -56,7 +56,7 @@ function Objectives() {
               <option value={30}>Thirty</option>
             </TextField>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={5}>
             <TextField
               size="small"
               id="outlined-select-currency"
@@ -74,6 +74,16 @@ function Objectives() {
               <option value={30}>Thirty</option>
             </TextField>
           </Grid>
+          <Grid item xs>
+            <TextField
+              label="Topic"
+              id="outlined-size-small"
+              // defaultValue="Topics"
+              variant="outlined"
+              size="small"
+            />
+          </Grid>
+
           <Grid item xs>
             <TextField
               size="small"

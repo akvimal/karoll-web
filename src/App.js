@@ -54,10 +54,10 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div>
-          <Redirect to="./login"></Redirect>
+          {/* <Redirect to="./login"></Redirect> */}
           {currentUser && (
             <>
-              <Redirect to="./objectives"></Redirect>
+              {/* <Redirect to="./objectives"></Redirect> */}
               <HomePage
                 isAdmin={isAdmin}
                 currentUser={currentUser}

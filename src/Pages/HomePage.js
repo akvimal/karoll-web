@@ -49,6 +49,8 @@ import Content from "./Solutions/Content";
 import Evaluation from "./Solutions/Evaluation";
 import CreateSkill from "./Solutions/CreateSkill";
 import CreateJobRoles from "./Solutions/CreateJobRoles";
+import CreateProject from "./Solutions/CreateProject";
+import CreateTask from "./Solutions/CreateTask";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -358,6 +360,9 @@ function HomePage(props) {
 
           <Route path="/certifications" component={Certifications} />
           <Route path="/projects" component={Projects} />
+          <Route path="/createproject" component={CreateProject} />
+          <Route path="/createtask" component={CreateTask} />
+
           <Route path="/courses" component={Courses} />
           <Route path="/settings" component={Settings} />
 
