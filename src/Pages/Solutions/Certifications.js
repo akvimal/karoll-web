@@ -7,6 +7,7 @@ import {
   Paper,
   Card,
 } from "@material-ui/core";
+import { Router, Route, Link, Redirect } from "react-router-dom";
 function Certifications() {
   return (
     <div style={{ padding: "20px" }}>
@@ -58,9 +59,11 @@ function Certifications() {
           </TextField>
         </Grid>
         <Grid item xs>
-          <Button variant="contained" color="primary">
-            Create skill certification{" "}
-          </Button>
+          <Link to="createskillcertification">
+            <Button variant="contained" color="primary">
+              Create skill certification{" "}
+            </Button>
+          </Link>
         </Grid>
       </Grid>
 
