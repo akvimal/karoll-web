@@ -50,12 +50,6 @@ function ListJobRoleLookup(props) {
     setChecked(newChecked);
   };
 
-  {
-    [0, 1, 2, 3].map((value) => {
-      const labelId = `checkbox-list-label-${value}`;
-    });
-  }
-
   return (
     <div>
       <List className={classes.root} subheader={<li />}>
