@@ -51,6 +51,7 @@ import CreateSkill from "./Solutions/CreateSkill";
 import CreateJobRoles from "./Solutions/CreateJobRoles";
 import CreateProject from "./Solutions/CreateProject";
 import CreateTask from "./Solutions/CreateTask";
+import CreateSkillCertification from "./CreateSkillCertification";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -359,6 +360,10 @@ function HomePage(props) {
           <Route path="/createjobroles" component={CreateJobRoles} />
 
           <Route path="/certifications" component={Certifications} />
+          <Route
+            path="/createskillcertification"
+            component={CreateSkillCertification}
+          />
           <Route path="/projects" component={Projects} />
           <Route path="/createproject" component={CreateProject} />
           <Route path="/createtask" component={CreateTask} />
