@@ -1,16 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { Courses } from './containers/courses/Courses';
-
-// import { configureFakeBackend } from './helpers/fake-backend';
-// configureFakeBackend();
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-//  <Courses></Courses>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
