@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ViewVersionAndTopics() {
   const classes = useStyles();
-  const [Data, setData] = useState([]);
+  
   const handleDelete = () => {
     console.info("You clicked the delete icon.");
   };
