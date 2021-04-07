@@ -61,9 +61,11 @@ function Certifications() {
           </TextField>
         </Grid>
         <Grid item xs>
-          <Button variant="contained" color="primary">
-            Create skill certification{" "}
-          </Button>
+          <Link to="createskillcertification">
+            <Button variant="contained" color="primary">
+              Create skill certification{" "}
+            </Button>
+          </Link>
         </Grid>
       </Grid>
 

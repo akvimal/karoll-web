@@ -1,21 +1,17 @@
-import React, { useState } from "react";
 import {
   List,
   ListItem,
   ListItemText,
-
   ListSubheader,
-
   makeStyles,
   Checkbox,
-  Button,
 } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import CommentIcon from "@material-ui/icons/Comment";
 
+import React, { useState } from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -34,13 +30,11 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
 }));
-function ListLookupObj() {
+
+function ListJobRoleLookup(props) {
+  const { data } = props;
+
   const classes = useStyles();
-  const [data, setdata] = useState([
-    { title: "Skill 1" },
-    { title: "Skill 2" },
-    { title: "Skill 3" },
-  ]);
   const [checked, setChecked] = React.useState([0]);
 
   const handleToggle = (value) => () => {
@@ -55,15 +49,14 @@ function ListLookupObj() {
 
     setChecked(newChecked);
   };
+
   return (
     <div>
       <List className={classes.root} subheader={<li />}>
         {data.map((d, i) => {
           return (
             <>
-
               {" "}
-
               <ListItem
                 key={i}
                 role={undefined}
@@ -90,13 +83,8 @@ function ListLookupObj() {
           );
         })}
       </List>
-
-      <Button variant="contained" style={{ marginTop: "3vh" }} color="primary">
-
-        Add
-      </Button>
     </div>
   );
 }
 
-export default ListLookupObj;
+export default ListJobRoleLookup;

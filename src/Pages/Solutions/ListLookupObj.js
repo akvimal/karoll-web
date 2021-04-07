@@ -3,19 +3,15 @@ import {
   List,
   ListItem,
   ListItemText,
-
   ListSubheader,
-
   makeStyles,
   Checkbox,
   Button,
 } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import CommentIcon from "@material-ui/icons/Comment";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -37,9 +33,9 @@ const useStyles = makeStyles((theme) => ({
 function ListLookupObj() {
   const classes = useStyles();
   const [data, setdata] = useState([
-    { title: "Skill 1" },
-    { title: "Skill 2" },
-    { title: "Skill 3" },
+    { title: "Objective 1" },
+    { title: "Objective 2" },
+    { title: "Objective 3" },
   ]);
   const [checked, setChecked] = React.useState([0]);
 
@@ -61,9 +57,7 @@ function ListLookupObj() {
         {data.map((d, i) => {
           return (
             <>
-
               {" "}
-
               <ListItem
                 key={i}
                 role={undefined}
@@ -90,9 +84,7 @@ function ListLookupObj() {
           );
         })}
       </List>
-
       <Button variant="contained" style={{ marginTop: "3vh" }} color="primary">
-
         Add
       </Button>
     </div>

@@ -47,6 +47,9 @@ import Evaluation from "./Solutions/Evaluation";
 import CreateSkill from "./Solutions/CreateSkill";
 import CreateProject from "./Solutions/CreateProject";
 import CreateTask from "./Solutions/CreateTask";
+
+import CreateCourse from "./Solutions/Courses/CreateCourse";
+import CreateSkillCertification from "./CreateSkillCertification";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -360,14 +363,20 @@ function HomePage(props) {
 
           <Route path="/certifications" component={Certifications} />
           <Route
+
             path="/createJobrolecertifications"
             component={CreateJobRoleCertifications}
+            
           />
+              <Route path="/createskillcertification"
+            component={CreateSkillCertification} />
+              
           <Route path="/projects" component={Projects} />
           <Route path="/createproject" component={CreateProject} />
           <Route path="/createtask" component={CreateTask} />
 
           <Route path="/courses" component={Courses} />
+          <Route path="/createcourse" component={CreateCourse} />
           <Route path="/settings" component={Settings} />
 
           {/* <Grid item xs={12} md={4} lg={3}>
