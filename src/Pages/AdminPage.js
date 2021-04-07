@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import API from "../config/api";
-
+import { Typography } from "@material-ui/core";
 import { userService } from "../services/user.service";
 import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 export default class AdminPage extends React.Component {
@@ -53,8 +53,11 @@ export default class AdminPage extends React.Component {
     const userName = JSON.parse(localStorage.getItem("currentUser"));
     console.log(userName);
     return (
-      <div>
-        <h1>Admin</h1>
+      <div style={{ padding: "20px" }}>
+        <Typography variant="h6" gutterBottom>
+          Admin
+        </Typography>
+
         <p>This page can only be accessed by administrators.</p>
         <div>
           All users from secure (admin only) api end point:

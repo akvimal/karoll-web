@@ -16,23 +16,43 @@ import PersonIcon from "@material-ui/icons/Person";
 function MainListItems(props) {
   const sidenav = [
     {
-      name: "Objectives",
+      name: "Courses",
       icons: <ListAltIcon></ListAltIcon>,
-      path: "objectives",
-    },
-    { name: "Skills", icons: <HowToRegIcon></HowToRegIcon>, path: "skills" },
-    {
-      name: "Job Roles",
-      icons: <PersonAddIcon></PersonAddIcon>,
-      path: "jobroles",
+      path: "opscourses",
     },
     {
-      name: "Certifications",
-      icons: <ReceiptIcon></ReceiptIcon>,
-      path: "certifications",
+      name: "My Cohorts",
+      icons: <ListAltIcon></ListAltIcon>,
+      path: "mycohort",
     },
-    { name: "Projects", icons: <StorageIcon></StorageIcon>, path: "projects" },
-    { name: "Courses", icons: <MenuBookIcon></MenuBookIcon>, path: "courses" },
+    {
+      name: "Cohorts",
+      icons: <ListAltIcon></ListAltIcon>,
+      path: "cohorts",
+    },
+    {
+      name: "Partipicants",
+      icons: <ListAltIcon></ListAltIcon>,
+      path: "partipicants",
+    },
+    // {
+    //   name: "Objectives",
+    //   icons: <ListAltIcon></ListAltIcon>,
+    //   path: "objectives",
+    // },
+    // { name: "Skills", icons: <HowToRegIcon></HowToRegIcon>, path: "skills" },
+    // {
+    //   name: "Job Roles",
+    //   icons: <PersonAddIcon></PersonAddIcon>,
+    //   path: "jobroles",
+    // },
+    // {
+    //   name: "Certifications",
+    //   icons: <ReceiptIcon></ReceiptIcon>,
+    //   path: "certifications",
+    // },
+    // { name: "Projects", icons: <StorageIcon></StorageIcon>, path: "projects" },
+    // { name: "Courses", icons: <MenuBookIcon></MenuBookIcon>, path: "courses" },
     { name: "Admin", icons: <PersonIcon></PersonIcon>, path: "admin" },
   ];
   const Side = sidenav
@@ -60,7 +80,7 @@ export default MainListItems;
 export function SecondaryListItems() {
   return (
     <List>
-      <Link to="/settings">
+      {/* <Link to="/settings">
         {" "}
         <ListItem button>
           <ListItemIcon>
@@ -68,7 +88,7 @@ export function SecondaryListItems() {
           </ListItemIcon>
           <ListItemText primary="Settings" />
         </ListItem>
-      </Link>
+      </Link> */}
     </List>
   );
 }

@@ -5,12 +5,11 @@ import { userService } from "../services/user.service";
 import { history } from "../helpers/history";
 import { PrivateRoute } from "../components/PrivateRoute";
 import { Role } from "../helpers/role";
-import CreateJobRoleCertifications from "./Solutions/CreateJobroleCertifications"
+import CreateJobRoleCertifications from "./Solutions/CreateJobroleCertifications";
 import clsx from "clsx";
 import CreateJobRoles from "./Solutions/CreateJobRoles";
 import {
   makeStyles,
-
   MenuItem,
   Menu,
   List,
@@ -50,6 +49,10 @@ import CreateTask from "./Solutions/CreateTask";
 
 import CreateCourse from "./Solutions/Courses/CreateCourse";
 import CreateSkillCertification from "./CreateSkillCertification";
+import MyCohorts from "./learnSme/MyCohorts";
+import Cohorts from "./ops/Cohorts";
+import Participants from "./ops/Participants";
+import OpsCourses from "./ops/OpsCourses";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -355,29 +358,32 @@ function HomePage(props) {
           <Route path="/content" component={Content} />
           <Route path="/evaluation" component={Evaluation} />
           <Route path="/jobroles" component={JobRoles} />
-          <Route
-            path="/createjobrole"
-            component={CreateJobRoles}
-          />
+          <Route path="/createjobrole" component={CreateJobRoles} />
           <Route path="/createjobroles" component={CreateJobRoles} />
 
           <Route path="/certifications" component={Certifications} />
           <Route
-
             path="/createJobrolecertifications"
             component={CreateJobRoleCertifications}
-            
           />
-              <Route path="/createskillcertification"
-            component={CreateSkillCertification} />
-              
+          <Route
+            path="/createskillcertification"
+            component={CreateSkillCertification}
+          />
+
           <Route path="/projects" component={Projects} />
+
           <Route path="/createproject" component={CreateProject} />
           <Route path="/createtask" component={CreateTask} />
 
           <Route path="/courses" component={Courses} />
           <Route path="/createcourse" component={CreateCourse} />
           <Route path="/settings" component={Settings} />
+
+          <Route path="/opscourses" component={OpsCourses} />
+          <Route path="/mycohort" component={MyCohorts} />
+          <Route path="/cohorts" component={Cohorts} />
+          <Route path="/partipicants" component={Participants} />
 
           {/* <Grid item xs={12} md={4} lg={3}>
                 <Paper className={fixedHeightPaper}>
