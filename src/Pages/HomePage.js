@@ -5,15 +5,12 @@ import { userService } from "../services/user.service";
 import { history } from "../helpers/history";
 import { PrivateRoute } from "../components/PrivateRoute";
 import { Role } from "../helpers/role";
+import CreateJobRoleCertifications from "./Solutions/CreateJobroleCertifications"
 import clsx from "clsx";
+import CreateJobRoles from "./Solutions/CreateJobRoles";
 import {
   makeStyles,
-  Button,
-  Popper,
-  Grow,
-  Paper,
-  ClickAwayListener,
-  Hidden,
+
   MenuItem,
   Menu,
   List,
@@ -48,7 +45,6 @@ import AdminPage from "./AdminPage";
 import Content from "./Solutions/Content";
 import Evaluation from "./Solutions/Evaluation";
 import CreateSkill from "./Solutions/CreateSkill";
-import CreateJobRoles from "./Solutions/CreateJobRoles";
 import CreateProject from "./Solutions/CreateProject";
 import CreateTask from "./Solutions/CreateTask";
 
@@ -359,13 +355,22 @@ function HomePage(props) {
           <Route path="/content" component={Content} />
           <Route path="/evaluation" component={Evaluation} />
           <Route path="/jobroles" component={JobRoles} />
+          <Route
+            path="/createjobrole"
+            component={CreateJobRoles}
+          />
           <Route path="/createjobroles" component={CreateJobRoles} />
 
           <Route path="/certifications" component={Certifications} />
           <Route
-            path="/createskillcertification"
-            component={CreateSkillCertification}
+
+            path="/createJobrolecertifications"
+            component={CreateJobRoleCertifications}
+            
           />
+              <Route path="/createskillcertification"
+            component={CreateSkillCertification} />
+              
           <Route path="/projects" component={Projects} />
           <Route path="/createproject" component={CreateProject} />
           <Route path="/createtask" component={CreateTask} />
