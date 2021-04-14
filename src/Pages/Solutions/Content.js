@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Typography } from "@material-ui/core";
 
 function Content() {
@@ -7,6 +8,7 @@ function Content() {
       <Typography variant="h6" gutterBottom>
         Content
       </Typography>
+      {/* <Settings></Settings> */}
     </div>
   );
 }
