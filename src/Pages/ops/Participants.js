@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   Button,
@@ -52,6 +53,7 @@ function Participants() {
   };
   const body = (
     <Paper elevation={3} className={classes.paper}>
+
       <Typography variant="h6" gutterBottom>
         Add Participant
       </Typography>

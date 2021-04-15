@@ -53,6 +53,7 @@ import MyCohorts from "./learnSme/MyCohorts";
 import Cohorts from "./ops/Cohorts";
 import Participants from "./ops/Participants";
 import OpsCourses from "./ops/OpsCourses";
+import AccessibleTabs from "./ops/CourseView";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -382,8 +383,9 @@ function HomePage(props) {
 
           <Route path="/opscourses" component={OpsCourses} />
           <Route path="/mycohort" component={MyCohorts} />
-          <Route path="/cohorts" component={Cohorts} />
-          <Route path="/participants" component={Participants} />
+          <Route path="/cohorts" component={Cohorts}
+          <Route path="/participants" component={Participants} /
+          <Route path="/courseview" component={AccessibleTabs} exact/>
 
           {/* <Grid item xs={12} md={4} lg={3}>
                 <Paper className={fixedHeightPaper}>
