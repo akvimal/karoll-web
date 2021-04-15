@@ -1,3 +1,4 @@
+
 import { Button, Grid, Typography,TextField, makeStyles, Paper } from "@material-ui/core";
 import React, { useState } from "react";
 const useStyles = makeStyles((theme) => ({
@@ -29,9 +30,9 @@ function Courses() {
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
-        Courses
+        Courses 1
       </Typography>
-  
+
     <Grid container spacing={3}>
     <Grid item sm={2}>
     <TextField

@@ -31,9 +31,9 @@ function MainListItems(props) {
       path: "cohorts",
     },
     {
-      name: "Partipicants",
+      name: "Participants",
       icons: <ListAltIcon></ListAltIcon>,
-      path: "partipicants",
+      path: "participants",
     },
     // {
     //   name: "Objectives",

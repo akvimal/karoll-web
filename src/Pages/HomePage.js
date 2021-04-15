@@ -383,8 +383,8 @@ function HomePage(props) {
 
           <Route path="/opscourses" component={OpsCourses} />
           <Route path="/mycohort" component={MyCohorts} />
-          <Route path="/cohorts" component={Cohorts} />
-          <Route path="/partipicants" component={Participants} />
+          <Route path="/cohorts" component={Cohorts}
+          <Route path="/participants" component={Participants} /
           <Route path="/courseview" component={AccessibleTabs} exact/>
 
           {/* <Grid item xs={12} md={4} lg={3}>
