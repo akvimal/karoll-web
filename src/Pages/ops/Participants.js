@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Button,
@@ -53,7 +52,6 @@ function Participants() {
   };
   const body = (
     <Paper elevation={3} className={classes.paper}>
-
       <Typography variant="h6" gutterBottom>
         Add Participant
       </Typography>
@@ -263,16 +261,14 @@ function Participants() {
             style={{
               borderBottomStyle: "solid",
               borderBottomWidth: "1px",
-              padding: "10px",
+              paddingBottom: "1vh",
             }}
           >
             <Grid item xs={10}>
-              <Typography variant="h6" gutterBottom>
-                Learning Cohort
-              </Typography>
+              <div style={{ fontWeight: 700 }}>Learning Cohort</div>
             </Grid>
             <Grid item xs={2}>
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" size="small">
                 Add
               </Button>
             </Grid>
@@ -285,9 +281,7 @@ function Participants() {
             }}
           >
             <Grid item xs style={{ paddingLeft: "10px" }}>
-              <Typography variant="h6" gutterBottom>
-                Cohort 1...
-              </Typography>
+              <Grid>Cohort 1...</Grid>
             </Grid>
             <Grid item xs={2} style={{ paddingRight: "5vh" }}>
               <Link
@@ -306,16 +300,15 @@ function Participants() {
             style={{
               borderBottomStyle: "solid",
               borderBottomWidth: "1px",
-              padding: "10px",
+              paddingBottom: "1vh",
+              marginTop: "3vh",
             }}
           >
             <Grid item xs={10}>
-              <Typography variant="h6" gutterBottom>
-                SME Cohort
-              </Typography>
+              <div style={{ fontWeight: 700 }}>SME Cohort</div>
             </Grid>
             <Grid item xs={2}>
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" size="small">
                 Add
               </Button>
             </Grid>

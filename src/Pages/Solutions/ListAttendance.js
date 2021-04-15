@@ -3,19 +3,14 @@ import {
   List,
   ListItem,
   ListItemText,
-
   ListSubheader,
-
   makeStyles,
   Checkbox,
   Button,
 } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
-
-
 function ListAttendance() {
-  
   const [data, setdata] = useState([
     { Name: " Raj" },
     { Name: " Aravind" },
@@ -36,14 +31,12 @@ function ListAttendance() {
     setChecked(newChecked);
   };
   return (
-    <div>
-      <List  subheader={<li />}>
+    <div style={{ marginTop: "1vh" }}>
+      <List subheader={<li />}>
         {data.map((d, i) => {
           return (
             <>
-
               {" "}
-
               <ListItem
                 key={i}
                 role={undefined}
@@ -52,12 +45,15 @@ function ListAttendance() {
                 style={{
                   borderBottomStyle: "solid",
                   borderBottomWidth: "1px",
-                  width:"55vh",
+                  width: "55vh",
                 }}
                 onClick={handleToggle(d)}
               >
-               
-                <ListItemText id={i} primary={`${d.Name} `} style={{marginLeft:"-1vh"}} />
+                <ListItemText
+                  id={i}
+                  primary={`${d.Name} `}
+                  style={{ marginLeft: "-1vh" }}
+                />
               </ListItem>
             </>
           );
