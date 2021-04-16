@@ -55,6 +55,7 @@ import Participants from "./ops/Participants";
 import OpsCourses from "./ops/OpsCourses";
 import CohortView from "./ops/CohortView";
 import ViewCourse from "./ops/ViewCourse";
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
