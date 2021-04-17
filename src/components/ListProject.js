@@ -191,11 +191,6 @@ function ListProject() {
 
             <TableContainer component={Paper}>
               <Table aria-label="collapsible table">
-                {/* <TableHead>
-                  <TableRow style={{ backgroundColor: "blue", color: "white" }}>
-                    <TableCell colSpan={4}>{d.project}</TableCell>
-                  </TableRow>
-                </TableHead> */}
                 <TableBody>
                   {d.feature.map((f, i) => (
                     <Row key={i} row={f} />
@@ -204,41 +199,6 @@ function ListProject() {
               </Table>
             </TableContainer>
           </Paper>
-          //   <List
-          //     component="nav"
-          //     aria-labelledby="nested-list-subheader"
-          //     subheader={
-          //       <ListSubheader component="div" id="nested-list-subheader">
-          //         {d.project}
-          //       </ListSubheader>
-          //     }
-          //     className={classes.root}
-          //   >
-          //     {d.feature.map((f) => {
-          //       return (
-          //         <>
-          //           {" "}
-          //           <ListItem button onClick={handleClick}>
-          //             <ListItemIcon>
-          //               <InboxIcon />
-          //             </ListItemIcon>
-          //             <ListItemText primary={f.title} />
-          //             {open ? <ExpandLess /> : <ExpandMore />}
-          //           </ListItem>
-          //           <Collapse in={open} timeout="auto" unmountOnExit>
-          //             <List component="div" disablePadding>
-          //               <ListItem button className={classes.nested}>
-          //                 <ListItemIcon>
-          //                   <StarBorder />
-          //                 </ListItemIcon>
-          //                 <ListItemText primary="Starred" />
-          //               </ListItem>
-          //             </List>
-          //           </Collapse>
-          //         </>
-          //       );
-          //     })}
-          //   </List>
         );
       })}
     </div>

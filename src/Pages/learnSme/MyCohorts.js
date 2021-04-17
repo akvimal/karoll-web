@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Progressbar from "./Progressbar";
-import { Card, CardContent, CardHeader, Grid, makeStyles, Paper, Select, TextField, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import {  Grid, makeStyles, Paper, TextField, Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
@@ -56,6 +57,7 @@ function MyCohorts() {
               </TextField>
               </Grid>
           </Grid>
+          <Link to="/learncohort" style={{ textDecoration: "none" }}>
           <Grid container spacing={3}>
           <Grid item sm={3}>
                  <Paper variant="outlined" className={classes.root}
@@ -74,9 +76,10 @@ function MyCohorts() {
                  style={{marginTop:"3vh",height:"18vh",textAlign:"center",fontFamily:"sans-serif",fontSize:"3vh",paddingTop:"7vh"}} > Cohort 3 / Course 1
                   </Paper> 
                  <Progressbar></Progressbar>
+
                   </Grid> 
           </Grid>
-      
+          </Link>
     </div>
   );
 }

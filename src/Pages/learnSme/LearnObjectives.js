@@ -1,10 +1,12 @@
+
+
+
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-// import Row from '@material-ui/core/Row';
 import Typography from "@material-ui/core/Typography";
 import {
   Button,
@@ -17,9 +19,10 @@ import {
   RadioGroup,
   TextField,
 } from "@material-ui/core";
-import ListAttendance from "../Solutions/ListAttendance";
-import CohortMonitor from "./CohortMonitor";
-import CohortPlan from "./CohortPlan";
+import LearnList from "./LearnList";
+import LearnPractice from "./LearnPractice";
+import LearnQuiz from "./LearnQuiz";
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,11 +50,11 @@ function DemoTabs(props) {
       }}
     >
       <Tabs style={{ color: "black" }} onChange={onChange} value={value}>
-        <Tab label="Participants" />
+        <Tab label="Learn" />
 
-        <Tab label="Plan " />
+        <Tab label="Practice " />
 
-        <Tab label="Monitor" />
+        <Tab label="Quiz" />
       </Tabs>
     </AppBar>
   );
@@ -71,7 +74,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CohortView() {
+export default function LearnObjectives() {
   const classes = useStyles();
 
   const [value, setValue] = React.useState(0);
@@ -82,9 +85,8 @@ export default function CohortView() {
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
-        Course 1 - Apr 01
+        Objectives 1 
       </Typography>
-      <h6> 04 Apr 2021</h6>
       <DemoTabs
         labelId="demo-a11y-tabs-manual-label"
         onChange={handleChange}
@@ -92,15 +94,15 @@ export default function CohortView() {
       />
 
       <TabPanel value={value} index={0}>
-        <ListAttendance></ListAttendance>
+       <LearnList></LearnList>
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <CohortPlan></CohortPlan>
+        <LearnPractice></LearnPractice>
       </TabPanel>
 
       <TabPanel value={value} index={2}>
-        <CohortMonitor></CohortMonitor>
+    <LearnQuiz></LearnQuiz>
       </TabPanel>
     </div>
   );

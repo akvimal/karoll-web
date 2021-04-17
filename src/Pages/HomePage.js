@@ -55,6 +55,8 @@ import Participants from "./ops/Participants";
 import OpsCourses from "./ops/OpsCourses";
 import CohortView from "./ops/CohortView";
 import ViewCourse from "./ops/ViewCourse";
+import LearnCohort from "./learnSme/LearnCohort";
+import LearnObjectives from "./learnSme/LearnObjectives";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -388,7 +390,8 @@ function HomePage(props) {
           <Route path="/cohorts" component={Cohorts} />
           <Route path="/participants" component={Participants} />
           <Route path="/cohortview" component={CohortView} exact />
-
+          <Route path="/learncohort" component={LearnCohort} exact />
+          <Route path="/learnobjectives" component={LearnObjectives} exact />
           {/* <Grid item xs={12} md={4} lg={3}>
                 <Paper className={fixedHeightPaper}>
 
