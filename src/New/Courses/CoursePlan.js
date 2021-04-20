@@ -1,80 +1,95 @@
-import { Typography,Grid, TextField, Button } from '@material-ui/core';
-import React from 'react';
-import ListCoursePlan from './ListCoursePlan';
-function CoursePlan(){
-    return(
-        <div style={{ padding: "20px" }}>
-            <Typography  style={{ marginTop: "3vh" }} gutterBottom>
-        Title
-      </Typography> 
-      <Typography  style={{ marginTop: "3vh" }} gutterBottom>
-        Desc
+import {
+  Typography,
+  Grid,
+  TextField,
+  Button,
+  Chip,
+  makeStyles,
+  Paper,
+} from "@material-ui/core";
+import React, { useState } from "react";
+import ListCoursePlan from "./ListCoursePlan";
+const useStyles = makeStyles((theme) => ({
+  chip: {
+    //margin: "5px",
+    marginLeft: "1vw",
+  },
+}));
+
+function CoursePlan() {
+  const classes = useStyles();
+  const [Data, setData] = useState([
+    { stack: "Java" },
+    { stack: "HTML" },
+    { stack: "CSS" },
+  ]);
+
+  const body = <Paper elevation={3} className={classes.paper}></Paper>;
+  return (
+    <div style={{ padding: "20px" }}>
+      <Typography variant="h6" gutterBottom>
+        Course Plan
       </Typography>
-     <Grid container spacing={3}>
-        <Grid item sm={2}>
-          <Typography  style={{ marginTop: "3vh" }} gutterBottom>
-        Java
-      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={2}>
+          <Typography variant="h6" gutterBottom>
+            Title
+          </Typography>
+        </Grid>
+        <Grid item xs>
+          <Typography
+            variant="body 1"
+            gutterBottom
+            style={{ fontSize: "1.1rem" }}
+          >
+            Java Collections
+          </Typography>
+        </Grid>
       </Grid>
-      <Grid item sm={3}>
-          <Typography  style={{ marginTop: "3vh" }} gutterBottom>
-        SQL
-      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={2}>
+          <Typography variant="h6" gutterBottom>
+            Description
+          </Typography>
+        </Grid>
+        <Grid item xs>
+          <Typography
+            variant="body 1"
+            gutterBottom
+            style={{ fontSize: "1.1rem" }}
+          >
+            A collection is an object that can hold references to other objects.
+            The collection interfaces declare the operations that can be
+            performed on each type of collection. The classes and interfaces of
+            the collections framework are in package java. util.
+          </Typography>
+        </Grid>
       </Grid>
-      </Grid> 
-      <Typography variant="h5"  style={{ marginTop: "3vh" }} gutterBottom>
+      {Data.map((d) => {
+        return (
+          <Chip
+            className={classes.chip}
+            label={d.stack}
+
+            // onDelete={handleDelete}
+          />
+        );
+      })}
+
+      <Typography variant="h6" style={{ marginTop: "3vh" }} gutterBottom>
         Structure
       </Typography>
-      <Grid container spacing={3}
-      style={{
-        borderBottomStyle: "solid",
-        borderBottomWidth: "1px",marginTop:"3vh"}}>
-       <Grid item sm={1}>
-       <TextField 
-                size="small"
-                id="outlined-select-currency"
-                label=" 1 "
-                variant="outlined"/>
-       </Grid>
-       <Grid item sm={2}>
-       <TextField 
-              size="small"
-              id="outlined-select-currency"
-              select
-              label="Hour"
-              fullWidth={true}
-              variant="outlined"
-            >
-              <option aria-label="None" value="" />
-              <option value={1}>Java</option>
-              <option value={2}>HTML</option>
-              <option value={3}>CSS</option>
-              </TextField>
-       </Grid>
-       <Grid item sm={7}>
-       <TextField 
-              size="small"
-              id="outlined-select-currency"
-              select
-              label="Activity Type"
-              fullWidth={true}
-              variant="outlined"
-            >
-              <option aria-label="None" value="" />
-              <option value={1}>Java</option>
-              <option value={2}>HTML</option>
-              <option value={3}>CSS</option>
-              </TextField>
-       </Grid>
-       <Grid item sm={2}>
-       <Button variant="contained" color="primary" >
-            +
-          </Button>
-          <div style={{marginTop:"6vh"}}> </div>
-       </Grid>
-      </Grid>
+
+      <Button
+        variant="contained"
+        color="primary"
+        style={{ marginLeft: "145vh" }}
+      >
+        Add Activity
+      </Button>
+
       <ListCoursePlan></ListCoursePlan>
-        </div>
-    );
+    </div>
+  );
 }
- export default CoursePlan;
+export default CoursePlan;
