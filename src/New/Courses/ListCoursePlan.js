@@ -26,25 +26,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Plan = [
-  { id: 1, hour: "1 Hour", course: "Java Colections-Lecture" },
-  { id: 2, hour: "2 Hour", course: "Java Arrays-Lecture" },
-  { id: 3, hour: "1 Hour", course: "Java Functions-Lecture" },
+  { id: "1", hour: "1 Hour", course: "Java Colections-Lecture" },
+  { id: "2", hour: "2 Hour", course: "Java Arrays-Lecture" },
+  { id: "3", hour: "1 Hour", course: "Java Functions-Lecture" },
 ];
 function ListCoursePlan() {
-  // const [Stack, setStack] = useState([
-  //   {
-  //     hour: "1 Hour",
-  //     course: "Java Colections-Lecture",
-  //   },
-  //   {
-  //     hour: "2 Hour",
-  //     course: "Java Arrays-Lecture",
-  //   },
-  //   {
-  //     hour: "1 Hour",
-  //     course: "Java Functions-Lecture",
-  //   },
-  // ]);
   const [characters, updateCharacters] = useState(Plan);
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -69,7 +55,7 @@ function ListCoursePlan() {
   const body = (
     <Paper elevation={3} className={classes.paper}>
       <Typography variant="h6" gutterBottom>
-        Update
+        Update Activity
       </Typography>
       <Typography variant="h6" gutterBottom>
         Java Collections-Lecture

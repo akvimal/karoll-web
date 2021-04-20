@@ -6,8 +6,10 @@ import {
   Chip,
   makeStyles,
   Paper,
+  Modal,
 } from "@material-ui/core";
 import React, { useState } from "react";
+import AddActivity from "../AddActivity";
 import ListCoursePlan from "./ListCoursePlan";
 const useStyles = makeStyles((theme) => ({
   chip: {
@@ -18,6 +20,15 @@ const useStyles = makeStyles((theme) => ({
 
 function CoursePlan() {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const [Data, setData] = useState([
     { stack: "Java" },
     { stack: "HTML" },
@@ -65,28 +76,40 @@ function CoursePlan() {
           </Typography>
         </Grid>
       </Grid>
-      {Data.map((d) => {
-        return (
-          <Chip
-            className={classes.chip}
-            label={d.stack}
+      <Grid container spacing={3} style={{ marginTop: "1vh" }}>
+        <Grid item xs={2}>
+          <Typography variant="h6" gutterBottom>
+            Stack
+          </Typography>
+        </Grid>
+        <Grid item xs>
+          {Data.map((d) => {
+            return <Chip className={classes.chip} label={d.stack} />;
+          })}
+        </Grid>
+      </Grid>
 
-            // onDelete={handleDelete}
-          />
-        );
-      })}
+      <Grid container spacing={2} style={{ marginTop: "3vh" }}>
+        <Grid item xs={10}>
+          <Typography variant="h6" gutterBottom>
+            Structure
+          </Typography>
+        </Grid>
 
-      <Typography variant="h6" style={{ marginTop: "3vh" }} gutterBottom>
-        Structure
-      </Typography>
-
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ marginLeft: "145vh" }}
-      >
-        Add Activity
-      </Button>
+        <Grid item xs>
+          <Button variant="contained" color="primary" onClick={handleOpen}>
+            Add Activity
+          </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            <AddActivity></AddActivity>
+          </Modal>
+        </Grid>
+      </Grid>
 
       <ListCoursePlan></ListCoursePlan>
     </div>
