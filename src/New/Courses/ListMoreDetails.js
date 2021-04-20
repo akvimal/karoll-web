@@ -1,28 +1,69 @@
-import { Button, Grid, Link, TextareaAutosize, TextField } from '@material-ui/core';
-import React from 'react';
-function ListMoreDetails(){
-    return(
-        <div style={{ padding: "10px" }}>
-     
-     <TextareaAutosize rowsMin={3} style={{ width: "140vh" }} />
+import {
+  Button,
+  Grid,
+  Link,
+  TextareaAutosize,
+  TextField,
+  Chip,
+  makeStyles,
+} from "@material-ui/core";
+import React from "react";
+const useStyles = makeStyles((theme) => ({
+  chip: {
+    margin: theme.spacing(0.5),
+  },
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    listStyle: "none",
+    padding: theme.spacing(0.5),
+    margin: 0,
+  },
+}));
+function ListMoreDetails(props) {
+  const classes = useStyles();
 
-          <Grid container spacing={3} style={{marginTop:"2vh"}}>
-              <Grid item sm={3}>
-              <TextField 
+  const handleDelete = (data) => {
+    console.log("deleted");
+  };
+  return (
+    <div>
+      <TextField
+        style={{ marginTop: "2vh" }}
+        id="outlined-multiline-static"
+        label="Description"
+        multiline
+        rows={4}
+        fullWidth={true}
+        variant="outlined"
+      />
+
+      <Grid container spacing={3} style={{ marginTop: "2vh" }}>
+        <Grid item xs={3}>
+          <TextField
             size="small"
             id="outlined-select-currency"
             fullWidth={true}
-            label="Topic"
-           variant="outlined"
-          ></TextField>
-              </Grid>
-              <Grid item sm={2} style={{marginTop:"1vh"}}>
-              <text>Programming</text>
-                    <Link style={{ textDecoration: "underline", color: "blue", paddingLeft: "5vh" }}>X</Link>
-              </Grid>
-          </Grid>
-        </div>
-    );
+            label="Stack"
+            variant="outlined"
+          />
+        </Grid>
+        <Grid item className={classes.root}>
+          {props.chipData.map((data) => {
+            return (
+              <li key={data.key}>
+                <Chip
+                  label={data.label}
+                  onDelete={handleDelete(data)}
+                  className={classes.chip}
+                />
+              </li>
+            );
+          })}
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 
 export default ListMoreDetails;

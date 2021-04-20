@@ -1,5 +1,3 @@
-
-
 import { Grid, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 
@@ -18,97 +16,62 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 import ListMoreDetails from "./ListMoreDetails";
+import { DriveEtaSharp } from "@material-ui/icons";
 
+function Row(props) {
+  const { row, onhandleDelete } = props;
+  console.log(row);
+  const [open, setOpen] = React.useState(false);
 
-  
-  function Row(props) {
-    const { row } = props;
-    console.log(row);
-    const [open, setOpen] = React.useState(false);
- 
-  
-    return (
-      
-      <React.Fragment>
-        <TableRow>
-          <TableCell >{row.title}</TableCell>
-          <TableCell >{row.userRole}</TableCell>
-          <TableCell >{row.module}</TableCell>
-  
-          <TableCell>
-              <Grid item m={3}>
-          <TextField style={{marginLeft:"-45vh"}}
-                size="small"
-                id="outlined-select-currency"
-                
-                label="Java Collections"
-                variant="outlined"/></Grid>
-          </TableCell>
-          <TableCell style={{marginLeft:"3vh"}}>
-          <TextField 
-              size="small"
-              id="outlined-select-currency"
-              select
-              label="Activity Type"
-              fullWidth={true}
-              variant="outlined"
-            >
-              <option aria-label="None" value="" />
-              <option value={1}>Java</option>
-              <option value={2}>HTML</option>
-              <option value={3}>CSS</option>
-              </TextField>
-          </TableCell>
-          <TableCell >
-            <IconButton style={{marginLeft:"4vh"}}
-              aria-label="expand row"
-              size="small"
-              onClick={() => setOpen(!open)}
-            >More
-              {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-            </IconButton>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              <Box margin={1}>
-                <Table size="small" aria-label="purchases">
-                  <TableHead>
-                    <TableRow>
-                         <ListMoreDetails></ListMoreDetails>
-                        </TableRow>
-                      
-                  </TableHead>
-                </Table>
-              </Box>
-            </Collapse>
-          </TableCell>
-        </TableRow>
-      </React.Fragment>
-      
-    );
-  }
-  
-  function LearnPractice(){
-    
-        
-const [data, setdata] = useState([
-    {
-      
-      feature: [
-        {
-          
-          title: "",
-         
-        },
-        {
-          title: " ",
-          
-        },
-      ],
-    },
-    
+  return (
+    <React.Fragment>
+      <TableRow>
+        <TableCell>{row.title}</TableCell>
+        <TableCell>Type: {row.type}</TableCell>
+        <TableCell>
+          <div
+            style={{
+              marginLeft: "4vh",
+              textDecoration: "underline",
+              color: "blue",
+            }}
+            onClick={() => setOpen(!open)}
+          >
+            <Grid container>
+              <Grid items>more</Grid>
+              <Grid items>
+                {/* {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />} */}
+              </Grid>
+            </Grid>
+          </div>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box margin={1}>
+              <Table size="small" aria-label="purchases">
+                <TableHead>
+                  <TableRow>
+                    <ListMoreDetails
+                      chipData={props.chipData}
+                      // handleDelete={onhandleDelete()}
+                    ></ListMoreDetails>
+                  </TableRow>
+                </TableHead>
+              </Table>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </React.Fragment>
+  );
+}
+
+function LearnPractice(props) {
+  const [data, setdata] = useState([
+    { id: 1, title: "Java-Collection", type: "Learn" },
+    { id: 2, title: "Java-oops", type: "Project" },
   ]);
   const [open, setOpen] = React.useState(true);
 
@@ -116,26 +79,22 @@ const [data, setdata] = useState([
     setOpen(!open);
   };
   return (
-    <div style={{ padding: "20px" }}>
-
-      {data.map((d) => {
-        return (
-            <TableContainer component={Paper}>
-            
-              <Table aria-label="collapsible table">
-              
-               <TableBody>
-                  
-               {d.feature.map((f, i) => (
-                <Row key={i} row={f} />
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          
-        );
-      })}
-    </div>
+    <>
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableBody>
+            {data.map((f, i) => (
+              <Row
+                key={i}
+                row={f}
+                chipData={props.chipData}
+                // onhandleDelete={() => props.handleDelete()}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
 export default LearnPractice;
