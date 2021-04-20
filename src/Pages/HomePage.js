@@ -8,6 +8,9 @@ import { Role } from "../helpers/role";
 import CreateJobRoleCertifications from "./Solutions/CreateJobroleCertifications";
 import clsx from "clsx";
 import CreateJobRoles from "./Solutions/CreateJobRoles";
+import CreateNewCourse from "../New/Courses/CreateNewCourse";
+import CoursePlan from "../New/Courses/CoursePlan";
+import CreateCohort from "../New/Cohorts/CreateCohort";
 import {
   makeStyles,
   MenuItem,
@@ -392,6 +395,12 @@ function HomePage(props) {
           <Route path="/cohortview" component={CohortView} exact />
           <Route path="/learncohort" component={LearnCohort} exact />
           <Route path="/learnobjectives" component={LearnObjectives} exact />
+
+
+          
+          <Route path="/createnewcourses" component={CreateNewCourse} />
+          <Route path="/courseplan" component={CoursePlan} />
+          <Route path="/createcohorts" component={CreateCohort} />
           {/* <Grid item xs={12} md={4} lg={3}>
                 <Paper className={fixedHeightPaper}>
 

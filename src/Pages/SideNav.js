@@ -16,25 +16,42 @@ import PersonIcon from "@material-ui/icons/Person";
 function MainListItems(props) {
   const sidenav = [
     {
-      name: "Courses",
+      name: "Create Course",
       icons: <ListAltIcon></ListAltIcon>,
-      path: "opscourses",
+      path: "createnewcourses",
     },
     {
-      name: "My Cohorts",
+      name: "Course Plan",
       icons: <ListAltIcon></ListAltIcon>,
-      path: "mycohort",
+      path: "courseplan",
     },
     {
-      name: "Cohorts",
+      name: "Create Cohort",
       icons: <ListAltIcon></ListAltIcon>,
-      path: "cohorts",
+      path: "createcohorts",
     },
-    {
-      name: "Participants",
-      icons: <ListAltIcon></ListAltIcon>,
-      path: "participants",
-    },
+    
+    // {
+    //   name: "Courses",
+    //   icons: <ListAltIcon></ListAltIcon>,
+    //   path: "opscourses",
+    // },
+    // {
+    //   name: "My Cohorts",
+    //   icons: <ListAltIcon></ListAltIcon>,
+    //   path: "mycohort",
+    // },
+    // {
+    //   name: "Cohorts",
+    //   icons: <ListAltIcon></ListAltIcon>,
+    //   path: "cohorts",
+    // },
+    // {
+    //   name: "Participants",
+    //   icons: <ListAltIcon></ListAltIcon>,
+    //   path: "participants",
+    // },
+
     // {
     //   name: "Objectives",
     //   icons: <ListAltIcon></ListAltIcon>,
