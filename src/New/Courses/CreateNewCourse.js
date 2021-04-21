@@ -1,5 +1,5 @@
 import React from "react";
-import ListCourseDetails from "./ListCourseDetails";
+import CourseActivityList from "./CourseActivityList";
 import {
   Button,
   Grid,
@@ -131,10 +131,10 @@ function CreateNewCourse() {
           </Link>
         </Grid>
       </Grid>
-      <ListCourseDetails
+      <CourseActivityList
         chipData={chipData}
         // handleDelete={handleDelete()}
-      ></ListCourseDetails>
+      ></CourseActivityList>
     </div>
   );
 }

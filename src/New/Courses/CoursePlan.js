@@ -35,40 +35,31 @@ function CoursePlan() {
     { stack: "CSS" },
   ]);
 
-  const body = <Paper elevation={3} className={classes.paper}></Paper>;
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
         Course Plan
       </Typography>
-      <Grid container spacing={3}>
+      <Grid container>
         <Grid item xs={2}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="subtitle2" gutterBottom>
             Title
           </Typography>
         </Grid>
         <Grid item xs>
-          <Typography
-            variant="body 1"
-            gutterBottom
-            style={{ fontSize: "1.1rem" }}
-          >
-            Java Collections
+          <Typography variant="body2" gutterBottom>
+            Java
           </Typography>
         </Grid>
       </Grid>
-      <Grid container spacing={3}>
-        <Grid item xs={2}>
-          <Typography variant="h6" gutterBottom>
+      <Grid container>
+        <Grid item xs>
+          <Typography variant="subtitle2" gutterBottom>
             Description
           </Typography>
         </Grid>
-        <Grid item xs>
-          <Typography
-            variant="body 1"
-            gutterBottom
-            style={{ fontSize: "1.1rem" }}
-          >
+        <Grid item xs={10}>
+          <Typography variant="body2" gutterBottom>
             A collection is an object that can hold references to other objects.
             The collection interfaces declare the operations that can be
             performed on each type of collection. The classes and interfaces of
@@ -76,9 +67,9 @@ function CoursePlan() {
           </Typography>
         </Grid>
       </Grid>
-      <Grid container spacing={3} style={{ marginTop: "1vh" }}>
+      <Grid container style={{ marginTop: "1vh" }}>
         <Grid item xs={2}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="subtitle2" gutterBottom>
             Stack
           </Typography>
         </Grid>
@@ -100,18 +91,18 @@ function CoursePlan() {
           <Button variant="contained" color="primary" onClick={handleOpen}>
             Add Activity
           </Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-          >
-            <AddActivity></AddActivity>
-          </Modal>
         </Grid>
       </Grid>
 
       <ListCoursePlan></ListCoursePlan>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <AddActivity></AddActivity>
+      </Modal>
     </div>
   );
 }

@@ -1,12 +1,14 @@
+import React from "react";
 import {
-  Button,
   Grid,
+  Link,
   makeStyles,
+  Modal,
   Paper,
   TextField,
+  Button,
   Typography,
 } from "@material-ui/core";
-import React from "react";
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
@@ -20,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     transform: `translate(-15%, -38%)`,
   },
 }));
-
 function AddActivity() {
   const classes = useStyles();
   return (
@@ -29,9 +30,8 @@ function AddActivity() {
         <Typography variant="h6" gutterBottom>
           Add Activity
         </Typography>
-
         <TextField
-          style={{ marginTop: "1vh" }}
+          style={{ marginTop: "2vh" }}
           size="small"
           id="outlined-select-currency"
           fullWidth={true}
@@ -57,15 +57,36 @@ function AddActivity() {
         </TextField>
 
         <Grid container spacing={3} style={{ marginTop: "1vh" }}>
-          <Grid item xs={4}>
+          <Grid item sm={6}>
             <TextField
               size="small"
               id="outlined-select-currency"
               fullWidth={true}
+              label="Start Date"
               variant="outlined"
             />
           </Grid>
-          <Grid item xs>
+          <Grid item sm={6}>
+            <TextField
+              size="small"
+              id="outlined-select-currency"
+              fullWidth={true}
+              label="Start Time"
+              variant="outlined"
+            />
+          </Grid>
+        </Grid>
+        <Grid container spacing={3}>
+          <Grid item sm={3}>
+            <TextField
+              size="small"
+              id="outlined-select-currency"
+              fullWidth={true}
+              label=""
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item sm={6}>
             <TextField
               size="small"
               id="outlined-select-currency"
@@ -78,6 +99,26 @@ function AddActivity() {
               <option value={1}>Hours</option>
               <option value={2}>Days</option>
             </TextField>
+          </Grid>
+        </Grid>
+        <Grid container spacing={3}>
+          <Grid item xs>
+            <TextField
+              size="small"
+              id="outlined-select-currency"
+              fullWidth={true}
+              label="End Date"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs>
+            <TextField
+              size="small"
+              id="outlined-select-currency"
+              fullWidth={true}
+              label="End Time"
+              variant="outlined"
+            />
           </Grid>
         </Grid>
         <Button

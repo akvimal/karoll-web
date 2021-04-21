@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
   },
 }));
-function ListMoreDetails(props) {
+function MoreActivityDetails(props) {
   const classes = useStyles();
 
   const handleDelete = (data) => {
@@ -66,4 +66,4 @@ function ListMoreDetails(props) {
   );
 }
 
-export default ListMoreDetails;
+export default MoreActivityDetails;

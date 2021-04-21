@@ -15,7 +15,7 @@ import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
-import ListMoreDetails from "./ListMoreDetails";
+import MoreActivityDetails from "./MoreActivityDetails";
 import { DriveEtaSharp } from "@material-ui/icons";
 
 function Row(props) {
@@ -53,10 +53,10 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <ListMoreDetails
+                    <MoreActivityDetails
                       chipData={props.chipData}
                       // handleDelete={onhandleDelete()}
-                    ></ListMoreDetails>
+                    ></MoreActivityDetails>
                   </TableRow>
                 </TableHead>
               </Table>
@@ -68,7 +68,7 @@ function Row(props) {
   );
 }
 
-function LearnPractice(props) {
+function CourseActivityList(props) {
   const [data, setdata] = useState([
     { id: 1, title: "Java-Collection", type: "Learn" },
     { id: 2, title: "Java-oops", type: "Project" },
@@ -97,4 +97,4 @@ function LearnPractice(props) {
     </>
   );
 }
-export default LearnPractice;
+export default CourseActivityList;

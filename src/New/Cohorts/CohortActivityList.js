@@ -11,15 +11,27 @@ import {
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React, { useState } from "react";
-import "./style.css";
+import "../Courses/style.css";
 import UpdateActivity from "../UpdateActivity";
-
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: "absolute",
+    marginTop: "8vh",
+    width: 350,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    top: `30vh`,
+    left: `38%`,
+    transform: `translate(-15%, -38%)`,
+  },
+}));
 const Plan = [
   { id: "1", hour: "1 Hour", course: "Java Colections-Lecture" },
   { id: "2", hour: "2 Hour", course: "Java Arrays-Lecture" },
   { id: "3", hour: "1 Hour", course: "Java Functions-Lecture" },
 ];
-function ListCoursePlan() {
+function CohortActivityList() {
   const [characters, updateCharacters] = useState(Plan);
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -28,7 +40,9 @@ function ListCoursePlan() {
     items.splice(result.destination.index, 0, reorderedItem);
 
     updateCharacters(items);
+    console.log(characters);
   }
+  console.log(characters);
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -38,9 +52,10 @@ function ListCoursePlan() {
   const handleClose = () => {
     setOpen(false);
   };
+  const classes = useStyles();
 
   return (
-    <div style={{ marginTop: "9vh" }}>
+    <div style={{ marginTop: "3vh" }}>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
           {(provided) => (
@@ -49,6 +64,8 @@ function ListCoursePlan() {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
+              {/* {Stack.map((s) => { */}
+              {/* return ( */}
               {characters.map(({ id, hour, course }, index) => {
                 return (
                   <Draggable key={id} draggableId={id} index={index}>
@@ -58,11 +75,14 @@ function ListCoursePlan() {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
+                        {/* <div className="characters-thumb"> */}
                         <Grid
                           container
                           style={{
+                            // borderBottomStyle: "dotted",
                             borderBottomWidth: "2px",
                             paddingBottom: "6px",
+                            // borderBottomColor: "darkgray",
                             marginTop: "2vh",
                           }}
                         >
@@ -112,4 +132,4 @@ function ListCoursePlan() {
     </div>
   );
 }
-export default ListCoursePlan;
+export default CohortActivityList;

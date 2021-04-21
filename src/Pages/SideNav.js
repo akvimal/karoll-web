@@ -20,17 +20,17 @@ function MainListItems(props) {
       icons: <ListAltIcon></ListAltIcon>,
       path: "createnewcourses",
     },
-    {
-      name: "Course Plan",
-      icons: <ListAltIcon></ListAltIcon>,
-      path: "courseplan",
-    },
+    // {
+    //   name: "Course Plan",
+    //   icons: <ListAltIcon></ListAltIcon>,
+    //   path: "courseplan",
+    // },
     {
       name: "Create Cohort",
       icons: <ListAltIcon></ListAltIcon>,
       path: "createcohorts",
     },
-    
+
     // {
     //   name: "Courses",
     //   icons: <ListAltIcon></ListAltIcon>,
