@@ -19,11 +19,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CoursePlan(props) {
-console.log(props.location.state);
+  console.log(props.location.state);
+  const { title, description, stack } = props.location.state;
   // const history=useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
- 
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -31,23 +32,15 @@ console.log(props.location.state);
   const handleClose = () => {
     setOpen(false);
   };
- 
-  const datas = 
-    {
-      title: "Java",
-      description: "Java Programming in Robust",
-      stack: ["java","python","html",]
-      };
-  
+
   return (
     <div style={{ padding: "20px" }}>
-     
       <Typography variant="h6" gutterBottom>
-        Course Plan 
+        Course Plan
       </Typography>
       {/* {datas.map((c)=>{
        return <> */}
-       <Grid container>
+      <Grid container>
         <Grid item xs={2}>
           <Typography variant="subtitle2" gutterBottom>
             Title
@@ -55,7 +48,7 @@ console.log(props.location.state);
         </Grid>
         <Grid item xs>
           <Typography variant="body2" gutterBottom>
-            <b> {datas.title} </b>
+            <b> {title} </b>
           </Typography>
         </Grid>
       </Grid>
@@ -67,7 +60,7 @@ console.log(props.location.state);
         </Grid>
         <Grid item xs={10}>
           <Typography variant="body2" gutterBottom>
-            {datas.description}
+            {description}
           </Typography>
         </Grid>
       </Grid>
@@ -78,14 +71,13 @@ console.log(props.location.state);
           </Typography>
         </Grid>
         <Grid item xs>
-          {datas.stack.map((d) => {
-            return <Chip className={classes.chip} label={d} />;
+          {stack.map((d) => {
+            return <Chip className={classes.chip} label={d.label} />;
           })}
         </Grid>
       </Grid>
       {/* </>
       })} */}
-      
 
       <Grid container spacing={2} style={{ marginTop: "3vh" }}>
         <Grid item xs={10}>
