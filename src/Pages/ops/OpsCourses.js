@@ -31,12 +31,31 @@ function Courses() {
       stack: "Stack 1 , Stack 2",
     },
   ]);
+
+  const [courses, setcourses] = useState([
+    "Course1",
+    "Course2",
+    "Course3",
+    "Course4",
+    "Course5",
+  ]);
   const classes = useStyles();
   return (
     <div style={{ padding: "20px" }}>
-      <Typography variant="h6" gutterBottom>
-        Courses
-      </Typography>
+      <Grid container spacing={3}>
+        <Grid item sm={9}>
+          <Typography variant="h6" gutterBottom>
+            Courses
+          </Typography>
+        </Grid>
+        <Grid item sm={3}>
+          <Link to="createnewcourses">
+            <Button variant="contained" color="primary">
+              Create Courses{" "}
+            </Button>
+          </Link>
+        </Grid>
+      </Grid>
 
       <Grid container spacing={3}>
         <Grid item sm={2}>
@@ -83,61 +102,29 @@ function Courses() {
             Search
           </Button>
         </Grid>
-        <Grid container spacing={3} style={{ marginLeft: "1vh" }}>
-          <Grid item sm={3}>
-            <Link to="viewcourse">
-              {" "}
-              <Paper
-                variant="outlined"
-                className={classes.root}
-                style={{
-                  marginTop: "6vh",
-                  height: "16vh",
-                  textAlign: "center",
-                  paddingTop: "5vh",
-                  fontFamily: "sans-serif",
-                  fontSize: "3vh",
-                }}
-              >
-                {" "}
-                Course 1{" "}
-              </Paper>
-            </Link>
-          </Grid>
-          <Grid item sm={3}>
-            <Paper
-              variant="outlined"
-              className={classes.root}
-              style={{
-                marginTop: "6vh",
-                height: "16vh",
-                textAlign: "center",
-                paddingTop: "5vh",
-                fontFamily: "sans-serif",
-                fontSize: "3vh",
-              }}
-            >
-              {" "}
-              Course 2{" "}
-            </Paper>
-          </Grid>
-          <Grid item sm={3}>
-            <Paper
-              variant="outlined"
-              className={classes.root}
-              style={{
-                marginTop: "6vh",
-                height: "16vh",
-                textAlign: "center",
-                paddingTop: "5vh",
-                fontFamily: "sans-serif",
-                fontSize: "3vh",
-              }}
-            >
-              {" "}
-              Course 3{" "}
-            </Paper>
-          </Grid>{" "}
+        <Grid container spacing={2} style={{ padding: "1vw" }}>
+          {courses.map((c) => {
+            return (
+              <Grid item xs={3}>
+                <Link to="courseplan">
+                  {" "}
+                  <Paper
+                    variant="outlined"
+                    style={{
+                      // marginTop: "6vh",
+                      height: "16vh",
+                      textAlign: "center",
+                      paddingTop: "5vh",
+                      fontFamily: "sans-serif",
+                      fontSize: "3vh",
+                    }}
+                  >
+                    {c}
+                  </Paper>
+                </Link>
+              </Grid>
+            );
+          })}
         </Grid>
       </Grid>
     </div>

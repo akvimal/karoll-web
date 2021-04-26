@@ -71,7 +71,7 @@ function Cohorts() {
         </Grid>
       </Grid>
       <Grid container spacing={3}>
-        <Grid item sm={2}>
+        <Grid item xs={3}>
           <TextField
             size="small"
             fullWidth={true}
@@ -87,7 +87,7 @@ function Cohorts() {
           </TextField>
         </Grid>
 
-        <Grid item sm={2}>
+        <Grid item xs={3}>
           <TextField
             size="small"
             fullWidth={true}
@@ -102,14 +102,7 @@ function Cohorts() {
             <option value={30}>Thirty</option>
           </TextField>
         </Grid>
-        <Grid item sm={2}>
-          <Checkbox
-            value="checkedA"
-            label="SME Driven"
-            inputProps={{ "aria-label": "Checkbox A" }}
-          />
-          SME Driven
-        </Grid>
+
         <Grid item sm={2}>
           <Button variant="contained" color="primary">
             Filter
@@ -120,7 +113,7 @@ function Cohorts() {
       <Grid container spacing={3} style={{ marginLeft: "-5vh" }}>
         {jobroles.map((s, i) => {
           return (
-            <Link to="/cohortview" style={{ textDecoration: "none" }}>
+            <Link style={{ textDecoration: "none" }}>
               <Paper
                 variant="outlined"
                 className={classes.root}

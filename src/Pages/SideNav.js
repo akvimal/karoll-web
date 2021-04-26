@@ -15,37 +15,37 @@ import MenuBookIcon from "@material-ui/icons/MenuBook";
 import PersonIcon from "@material-ui/icons/Person";
 function MainListItems(props) {
   const sidenav = [
-    {
-      name: "Create Course",
-      icons: <ListAltIcon></ListAltIcon>,
-      path: "createnewcourses",
-    },
+    // {
+    //   name: "Create Course",
+    //   icons: <ListAltIcon></ListAltIcon>,
+    //   path: "createnewcourses",
+    // },
     // {
     //   name: "Course Plan",
     //   icons: <ListAltIcon></ListAltIcon>,
     //   path: "courseplan",
     // },
-    {
-      name: "Create Cohort",
-      icons: <ListAltIcon></ListAltIcon>,
-      path: "createcohorts",
-    },
-
     // {
-    //   name: "Courses",
+    //   name: "Create Cohort",
     //   icons: <ListAltIcon></ListAltIcon>,
-    //   path: "opscourses",
+    //   path: "createcohorts",
     // },
+
+    {
+      name: "Courses",
+      icons: <ListAltIcon></ListAltIcon>,
+      path: "opscourses",
+    },
     // {
     //   name: "My Cohorts",
     //   icons: <ListAltIcon></ListAltIcon>,
     //   path: "mycohort",
     // },
-    // {
-    //   name: "Cohorts",
-    //   icons: <ListAltIcon></ListAltIcon>,
-    //   path: "cohorts",
-    // },
+    {
+      name: "Cohorts",
+      icons: <ListAltIcon></ListAltIcon>,
+      path: "cohorts",
+    },
     // {
     //   name: "Participants",
     //   icons: <ListAltIcon></ListAltIcon>,
