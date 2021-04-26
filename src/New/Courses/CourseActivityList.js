@@ -1,4 +1,4 @@
-import { Grid, TextField, Typography } from "@material-ui/core";
+import { Chip, Grid, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,15 +12,23 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
-import MoreActivityDetails from "./MoreActivityDetails";
-import { DriveEtaSharp } from "@material-ui/icons";
-
+const useStyles = makeStyles((theme) => ({
+  chip: {
+    margin: theme.spacing(0.5),
+  },
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    listStyle: "none",
+    padding: theme.spacing(0.5),
+    margin: 0,
+  },
+}));
 function Row(props) {
   const { row, onhandleDelete } = props;
-  console.log(row);
+  const classes = useStyles();
+  // console.log(row);
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -53,10 +61,58 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <MoreActivityDetails
+                    {/* <MoreActivityDetails
                       chipData={props.chipData}
+                      handleStackAdd={(e)=>props.handleStack(e)}
                       // handleDelete={onhandleDelete()}
-                    ></MoreActivityDetails>
+                    ></MoreActivityDetails> */}
+ <TextField
+        style={{ marginTop: "2vh" }}
+        id="outlined-multiline-static"
+        label="Description"
+        multiline
+        rows={4}
+        fullWidth={true}
+        variant="outlined"
+      />
+
+      <Grid container spacing={3} style={{ marginTop: "2vh" }}>
+        <Grid item xs={3}>
+          <TextField
+            size="small"
+            id="outlined-select-currency"
+            fullWidth={true}
+            label="Stack"
+            variant="outlined"
+            onKeyPress = {(e)=>props.handleStackAdd(e)}
+          />
+        </Grid>
+        <Grid item className={classes.root}>
+          
+              {/* <li key={data.key}>
+                <Chip
+                  label={data.label}
+                  onDelete={handleDelete(data)}
+                  className={classes.chip}
+                />
+              </li> */}
+              {/* {props.activityStack.map((data) => {
+            return (
+              <li key={data.key}>
+                <Chip
+                  label={data}
+                  onDelete={props.data}
+                  className={classes.chip}
+                />
+              </li>
+            );
+          })} */}
+            
+          
+        </Grid>
+      </Grid>
+
+
                   </TableRow>
                 </TableHead>
               </Table>
@@ -87,7 +143,7 @@ function CourseActivityList(props) {
               <Row
                 key={i}
                 row={f}
-                chipData={props.chipData}
+                // chipData={props.chipData}
                 // onhandleDelete={() => props.handleDelete()}
               />
             ))}

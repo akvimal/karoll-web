@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CourseActivityList from "./CourseActivityList";
 import {
   Button,
@@ -9,7 +9,7 @@ import {
   Typography,
   TextField,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AddActivity from "../AddActivity";
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,7 +34,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0.5),
   },
 }));
+
 function CreateNewCourse() {
+
+ 
+const history=useHistory();
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -45,20 +50,52 @@ function CreateNewCourse() {
   const handleClose = () => {
     setOpen(false);
   };
-  const [chipData, setChipData] = React.useState([
-    { key: 0, label: "Angular" },
-    { key: 1, label: "jQuery" },
-    { key: 2, label: "Polymer" },
-    { key: 3, label: "React" },
-    { key: 4, label: "Vue.js" },
-  ]);
 
-  const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
-    );
+  // const [chipData, setChipData] = React.useState([
+  //   { key: 0, label: "Angular" },
+  //   { key: 1, label: "jQuery" },
+  //   { key: 2, label: "Polymer" },
+  //   { key: 3, label: "React" },
+  //   { key: 4, label: "Vue.js" },
+  // ]);
+  
+
+ const [courseData, setCourseData] = useState({
+   title:"",
+   description:"",stack:[]
+ })
+//  const [activityData, setActivityData] = useState({
+//    title:"",
+//    activityType:"",
+//    duration:"",
+//    description:""
+//  })
+
+//  const [stack, setStack] = useState([]);
+ const [activityStack, setActivityStack] = useState([])
+ console.log(courseData);
+  const onAddStack = (event) => {
+    const e = event.target.value;
+    return event.key === "Enter" ? setCourseData({...courseData,stack:e}) : null;
+    
   };
 
+  // const onActivityKey = (event) => {
+  //   const e = event.target.value;
+  //   return event.key === "Enter" ? setActivityStack((arr) => [...arr, e]) : null;
+    
+  // };
+
+  const handleDelete = (chipToDelete) => () => {
+    console.log(chipToDelete);
+    // setStack((chips) =>
+    //   chips.filter((chip) => chip !== chipToDelete)
+    // );
+  };
+  const onsubmitHandler = () => {
+    // setCourseData({...courseData, stack})
+    history.push({ pathname: "/courseplan", state: courseData });
+  }
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
@@ -71,6 +108,7 @@ function CreateNewCourse() {
         fullWidth={true}
         label="Title"
         variant="outlined"
+        onChange={(e)=>setCourseData({...courseData, title:e.target.value})}
       />
       <br />
       <TextField
@@ -81,6 +119,7 @@ function CreateNewCourse() {
         rows={4}
         fullWidth={true}
         variant="outlined"
+        onChange={(e)=>setCourseData({...courseData, description:e.target.value})}
       />
 
       <Grid container spacing={3} style={{ marginTop: "2vh" }}>
@@ -91,22 +130,28 @@ function CreateNewCourse() {
             fullWidth={true}
             label="Stack"
             variant="outlined"
+            // onChange={(e)=>setCourseData({...courseData, stack:e.target.value})}
+            onKeyPress={(e) => onAddStack(e)}
           />
         </Grid>
+
+        
         <Grid item xs className={classes.root}>
-          {chipData.map((data) => {
+          {courseData.stack.map((data) => {
             return (
               <li key={data.key}>
                 <Chip
-                  label={data.label}
+                  label={data}
                   onDelete={handleDelete(data)}
                   className={classes.chip}
                 />
               </li>
             );
           })}
+          {/* {name !== undefined ? name.map((text) => <b> {text} </b>) : null} */}
         </Grid>
       </Grid>
+
 
       <Grid container spacing={3} style={{ marginTop: "2vh" }}>
         <Grid item xs={8}></Grid>
@@ -132,9 +177,13 @@ function CreateNewCourse() {
         </Grid>
       </Grid>
       <CourseActivityList
-        chipData={chipData}
+        // handleStack={(e)=>onActivityKey(e)}
+        // chipData={chipData}
         // handleDelete={handleDelete()}
       ></CourseActivityList>
+      <Button variant="contained" color="primary" onClick={()=>onsubmitHandler()} >
+            Submit
+          </Button>
     </div>
   );
 }
