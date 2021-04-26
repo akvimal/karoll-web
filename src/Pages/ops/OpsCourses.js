@@ -106,22 +106,20 @@ function Courses() {
           {courses.map((c) => {
             return (
               <Grid item xs={3}>
-                <Link to="courseplan">
-                  {" "}
-                  <Paper
-                    variant="outlined"
-                    style={{
-                      // marginTop: "6vh",
-                      height: "16vh",
-                      textAlign: "center",
-                      paddingTop: "5vh",
-                      fontFamily: "sans-serif",
-                      fontSize: "3vh",
-                    }}
-                  >
-                    {c}
-                  </Paper>
-                </Link>
+                {" "}
+                <Paper
+                  variant="outlined"
+                  style={{
+                    // marginTop: "6vh",
+                    height: "16vh",
+                    textAlign: "center",
+                    paddingTop: "5vh",
+                    fontFamily: "sans-serif",
+                    fontSize: "3vh",
+                  }}
+                >
+                  {c}
+                </Paper>
               </Grid>
             );
           })}

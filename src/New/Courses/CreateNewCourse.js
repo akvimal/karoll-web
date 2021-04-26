@@ -138,6 +138,20 @@ function CreateNewCourse() {
 
       <Grid container spacing={3} style={{ marginTop: "2vh" }}>
         <Grid item xs={8}></Grid>
+
+        <Grid item xs>
+          {courseData != "" ? (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => onsubmitHandler()}
+            >
+              Show Plan
+            </Button>
+          ) : (
+            ""
+          )}
+        </Grid>
         <Grid item xs>
           <Button variant="contained" color="primary" onClick={handleOpen}>
             Add Activity
@@ -150,21 +164,6 @@ function CreateNewCourse() {
           >
             <AddActivity></AddActivity>
           </Modal>
-        </Grid>
-        <Grid item xs>
-          {courseData != "" ? (
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => onsubmitHandler()}
-            >
-              Show Plan
-            </Button>
-          ) : (
-            <Button variant="contained" color="primary" disabled>
-              Show Plan
-            </Button>
-          )}
         </Grid>
       </Grid>
       <CourseActivityList></CourseActivityList>
