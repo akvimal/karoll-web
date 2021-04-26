@@ -63,7 +63,7 @@ function Cohorts() {
           <h5>Cohorts</h5>
         </Grid>
         <Grid item sm={3}>
-          <Link to="createCohorts">
+          <Link to="createcohorts">
             <Button variant="contained" color="primary">
               Create Cohorts{" "}
             </Button>
