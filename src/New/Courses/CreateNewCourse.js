@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CourseActivityList from "./CourseActivityList";
 import {
   Button,
@@ -9,7 +9,7 @@ import {
   Typography,
   TextField,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AddActivity from "../AddActivity";
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,7 +34,10 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0.5),
   },
 }));
+
 function CreateNewCourse() {
+  const history = useHistory();
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -45,20 +48,40 @@ function CreateNewCourse() {
   const handleClose = () => {
     setOpen(false);
   };
-  const [chipData, setChipData] = React.useState([
-    { key: 0, label: "Angular" },
-    { key: 1, label: "jQuery" },
-    { key: 2, label: "Polymer" },
-    { key: 3, label: "React" },
-    { key: 4, label: "Vue.js" },
-  ]);
 
-  const handleDelete = (chipToDelete) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
-    );
+  const [courseData, setCourseData] = useState("");
+
+  const [title, settitle] = useState("");
+  const [description, setdescription] = useState("");
+
+  const [stackData, setstackData] = React.useState([]);
+
+  const addStackHandler = (e) => {
+    const cpy = [...stackData];
+    if (e.key == "Enter") {
+      const data = {
+        id: Math.floor(Math.random() * 100),
+        label: e.target.value,
+      };
+      cpy.push(data);
+      setstackData(cpy);
+
+      const d = {
+        title: title,
+        description: description,
+        stack: cpy,
+      };
+      setCourseData(d);
+    }
   };
 
+  const handleDelete = (id) => () => {
+    setstackData((chips) => chips.filter((chip) => chip.id !== id));
+  };
+
+  const onsubmitHandler = () => {
+    history.push({ pathname: "/courseplan", state: courseData });
+  };
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
@@ -71,6 +94,7 @@ function CreateNewCourse() {
         fullWidth={true}
         label="Title"
         variant="outlined"
+        onChange={(e) => settitle(e.target.value)}
       />
       <br />
       <TextField
@@ -81,6 +105,7 @@ function CreateNewCourse() {
         rows={4}
         fullWidth={true}
         variant="outlined"
+        onChange={(e) => setdescription(e.target.value)}
       />
 
       <Grid container spacing={3} style={{ marginTop: "2vh" }}>
@@ -91,20 +116,23 @@ function CreateNewCourse() {
             fullWidth={true}
             label="Stack"
             variant="outlined"
+            onKeyPress={(e) => addStackHandler(e)}
           />
         </Grid>
+
         <Grid item xs className={classes.root}>
-          {chipData.map((data) => {
+          {stackData.map((data) => {
             return (
-              <li key={data.key}>
+              <li key={data.id}>
                 <Chip
                   label={data.label}
-                  onDelete={handleDelete(data)}
+                  onDelete={handleDelete(data.id)}
                   className={classes.chip}
                 />
               </li>
             );
           })}
+          {/* {name !== undefined ? name.map((text) => <b> {text} </b>) : null} */}
         </Grid>
       </Grid>
 
@@ -124,17 +152,22 @@ function CreateNewCourse() {
           </Modal>
         </Grid>
         <Grid item xs>
-          <Link to="courseplan">
-            <Button variant="contained" color="primary">
+          {courseData != "" ? (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => onsubmitHandler()}
+            >
               Show Plan
             </Button>
-          </Link>
+          ) : (
+            <Button variant="contained" color="primary" disabled>
+              Show Plan
+            </Button>
+          )}
         </Grid>
       </Grid>
-      <CourseActivityList
-        chipData={chipData}
-        // handleDelete={handleDelete()}
-      ></CourseActivityList>
+      <CourseActivityList></CourseActivityList>
     </div>
   );
 }

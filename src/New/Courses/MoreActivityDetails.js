@@ -46,20 +46,20 @@ function MoreActivityDetails(props) {
             fullWidth={true}
             label="Stack"
             variant="outlined"
+            onKeyPress = {(e)=>props.handleStackAdd(e)}
           />
         </Grid>
         <Grid item className={classes.root}>
-          {props.chipData.map((data) => {
-            return (
-              <li key={data.key}>
+          
+              {/* <li key={data.key}>
                 <Chip
                   label={data.label}
                   onDelete={handleDelete(data)}
                   className={classes.chip}
                 />
-              </li>
-            );
-          })}
+              </li> */}
+            
+          
         </Grid>
       </Grid>
     </div>

@@ -13,12 +13,15 @@ import AddActivity from "../AddActivity";
 import ListCoursePlan from "./ListCoursePlan";
 const useStyles = makeStyles((theme) => ({
   chip: {
-    //margin: "5px",
+    // margin: "5px",
     marginLeft: "1vw",
   },
 }));
 
-function CoursePlan() {
+function CoursePlan(props) {
+  console.log(props.location.state);
+  const { title, description, stack } = props.location.state;
+  // const history=useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -29,17 +32,14 @@ function CoursePlan() {
   const handleClose = () => {
     setOpen(false);
   };
-  const [Data, setData] = useState([
-    { stack: "Java" },
-    { stack: "HTML" },
-    { stack: "CSS" },
-  ]);
 
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
         Course Plan
       </Typography>
+      {/* {datas.map((c)=>{
+       return <> */}
       <Grid container>
         <Grid item xs={2}>
           <Typography variant="subtitle2" gutterBottom>
@@ -48,7 +48,7 @@ function CoursePlan() {
         </Grid>
         <Grid item xs>
           <Typography variant="body2" gutterBottom>
-            Java
+            <b> {title} </b>
           </Typography>
         </Grid>
       </Grid>
@@ -60,10 +60,7 @@ function CoursePlan() {
         </Grid>
         <Grid item xs={10}>
           <Typography variant="body2" gutterBottom>
-            A collection is an object that can hold references to other objects.
-            The collection interfaces declare the operations that can be
-            performed on each type of collection. The classes and interfaces of
-            the collections framework are in package java. util.
+            {description}
           </Typography>
         </Grid>
       </Grid>
@@ -74,11 +71,13 @@ function CoursePlan() {
           </Typography>
         </Grid>
         <Grid item xs>
-          {Data.map((d) => {
-            return <Chip className={classes.chip} label={d.stack} />;
+          {stack.map((d) => {
+            return <Chip className={classes.chip} label={d.label} />;
           })}
         </Grid>
       </Grid>
+      {/* </>
+      })} */}
 
       <Grid container spacing={2} style={{ marginTop: "3vh" }}>
         <Grid item xs={10}>
