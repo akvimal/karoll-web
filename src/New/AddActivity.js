@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 function AddActivity() {
   const classes = useStyles();
+  const path = window.location.pathname;
+  console.log(path);
   return (
     <div>
       <Paper elevation={3} className={classes.paper}>
@@ -56,27 +58,31 @@ function AddActivity() {
           <option value={5}>SME connect</option>
         </TextField>
 
+        {path === "/createcohorts" ? (
+          <Grid container spacing={3} style={{ marginTop: "1vh" }}>
+            <Grid item sm={6}>
+              <TextField
+                size="small"
+                id="outlined-select-currency"
+                fullWidth={true}
+                label="Start Date"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item sm={6}>
+              <TextField
+                size="small"
+                id="outlined-select-currency"
+                fullWidth={true}
+                label="Start Time"
+                variant="outlined"
+              />
+            </Grid>
+          </Grid>
+        ) : (
+          " "
+        )}
         <Grid container spacing={3} style={{ marginTop: "1vh" }}>
-          <Grid item sm={6}>
-            <TextField
-              size="small"
-              id="outlined-select-currency"
-              fullWidth={true}
-              label="Start Date"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField
-              size="small"
-              id="outlined-select-currency"
-              fullWidth={true}
-              label="Start Time"
-              variant="outlined"
-            />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3}>
           <Grid item sm={3}>
             <TextField
               size="small"
@@ -101,26 +107,31 @@ function AddActivity() {
             </TextField>
           </Grid>
         </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs>
-            <TextField
-              size="small"
-              id="outlined-select-currency"
-              fullWidth={true}
-              label="End Date"
-              variant="outlined"
-            />
+
+        {path === "/createcohorts" ? (
+          <Grid container spacing={3}>
+            <Grid item xs>
+              <TextField
+                size="small"
+                id="outlined-select-currency"
+                fullWidth={true}
+                label="End Date"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs>
+              <TextField
+                size="small"
+                id="outlined-select-currency"
+                fullWidth={true}
+                label="End Time"
+                variant="outlined"
+              />
+            </Grid>
           </Grid>
-          <Grid item xs>
-            <TextField
-              size="small"
-              id="outlined-select-currency"
-              fullWidth={true}
-              label="End Time"
-              variant="outlined"
-            />
-          </Grid>
-        </Grid>
+        ) : (
+          " "
+        )}
         <Button
           variant="contained"
           color="primary"
