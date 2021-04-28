@@ -83,7 +83,7 @@ export default function LoginPage(props) {
                   setStatus(data.message);
                 } else {
                   const { from } = props.location.state || {
-                    from: { pathname: "/createnewcourses" },
+                    from: { pathname: "/opscourses" },
                   };
                   props.history.push(from);
                 }

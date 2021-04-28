@@ -1,5 +1,6 @@
 import { BehaviorSubject } from "rxjs";
 import API from "../config/api";
+import Swal from "sweetalert2";
 
 //import config from 'config';
 import { handleResponse } from "../helpers/handle-response";
@@ -55,14 +56,17 @@ function verify(username, token) {
   //     body: JSON.stringify({ username, token })
   // };
   console.log(username, token);
-  return API.post(`/api/auth/verify-token`, { username, token }).then(
-    (result) => {
+  return API.post(`/api/auth/verify-token`, { username, token })
+    .then((res) => {
+      Swal.fire("Congrats", `${res.data}`, "success");
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       // localStorage.setItem('currentUser', JSON.stringify(user));
       // currentUserSubject.next(user);
-      return result;
-    }
-  );
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   // return fetch(`/api/auth/verify-token`, requestOptions)
   //     .then(handleResponse)
@@ -87,14 +91,20 @@ function signup(firstName, lastName, username, password, terms) {
     userName: username,
     password,
     terms,
-  }).then((res) => {
-    // store user details and jwt token in local storage to keep user logged in between page refreshes
-    // localStorage.setItem('currentUser', JSON.stringify(user));
-    // currentUserSubject.next(user);
-    //console.log('Registered',res);
+  })
+    .then((res) => {
+      // alert(res.data);
+      // console.log(res.data);
+      Swal.fire("Congrats", `${res.data}`, "success");
 
-    return res;
-  });
+      // store user details and jwt token in local storage to keep user logged in between page refreshes
+      // localStorage.setItem('currentUser', JSON.stringify(user));
+      // currentUserSubject.next(user);
+      //console.log('Registered',res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   // return fetch(`/api/auth/register`, requestOptions)
   //     .then(handleResponse)
