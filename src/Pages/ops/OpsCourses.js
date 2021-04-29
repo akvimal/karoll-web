@@ -33,11 +33,18 @@ function Courses() {
   ]);
 
   const [courses, setcourses] = useState([
-    "Course1",
-    "Course2",
-    "Course3",
-    "Course4",
-    "Course5",
+    { title: "Python" },
+    {
+      title: "Mern Stack",
+    },
+
+    {
+      title: "Data Sciences",
+    },
+
+    {
+      title: "Mean Stack",
+    },
   ]);
   const classes = useStyles();
   return (
@@ -118,7 +125,7 @@ function Courses() {
                     fontSize: "3vh",
                   }}
                 >
-                  {c}
+                  {c.title}
                 </Paper>
               </Grid>
             );
