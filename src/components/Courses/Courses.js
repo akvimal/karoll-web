@@ -8,6 +8,9 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { Router, Route, Link, Redirect } from "react-router-dom";
+import ListCourse from "./ListCourse";
+import { useSelector } from "react-redux";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
@@ -21,31 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Courses() {
-  const [jobroles, setjobroles] = useState([
-    {
-      title: "Skill A",
-      stack: "Stack 1 , Stack 2",
-    },
-    {
-      title: "Skill B",
-      stack: "Stack 1 , Stack 2",
-    },
-  ]);
+  const courses = useSelector((state) => state.courses);
 
-  const [courses, setcourses] = useState([
-    { title: "Python" },
-    {
-      title: "Mern Stack",
-    },
-
-    {
-      title: "Data Sciences",
-    },
-
-    {
-      title: "Mean Stack",
-    },
-  ]);
   const classes = useStyles();
   return (
     <div style={{ padding: "20px" }}>
@@ -74,7 +54,7 @@ function Courses() {
             size="small"
           />
         </Grid>
-        <Grid item sm={4}>
+        {/* <Grid item sm={4}>
           <TextField
             size="small"
             fullWidth={true}
@@ -88,7 +68,7 @@ function Courses() {
             <option value={20}>Twenty</option>
             <option value={30}>Thirty</option>
           </TextField>
-        </Grid>
+        </Grid> */}
         <Grid item sm={4}>
           <TextField
             size="small"
@@ -110,24 +90,11 @@ function Courses() {
           </Button>
         </Grid>
         <Grid container spacing={2} style={{ padding: "1vw" }}>
-          {courses.map((c) => {
+          {courses.map((c, i) => {
             return (
-              <Grid item xs={3}>
-                {" "}
-                <Paper
-                  variant="outlined"
-                  style={{
-                    // marginTop: "6vh",
-                    height: "16vh",
-                    textAlign: "center",
-                    paddingTop: "5vh",
-                    fontFamily: "sans-serif",
-                    fontSize: "3vh",
-                  }}
-                >
-                  {c.title}
-                </Paper>
-              </Grid>
+              <React.Fragment key={i}>
+                <ListCourse course={c}></ListCourse>
+              </React.Fragment>
             );
           })}
         </Grid>

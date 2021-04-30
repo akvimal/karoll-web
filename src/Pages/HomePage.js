@@ -5,17 +5,11 @@ import { userService } from "../services/user.service";
 import { history } from "../helpers/history";
 import { PrivateRoute } from "../components/PrivateRoute";
 import { Role } from "../helpers/role";
-import CreateJobRoleCertifications from "./Solutions/CreateJobroleCertifications";
 import clsx from "clsx";
-import CreateJobRoles from "./Solutions/CreateJobRoles";
-import CreateNewCourse from "../New/Courses/CreateNewCourse";
-import CoursePlan from "../New/Courses/CoursePlan";
-import CreateCohort from "../New/Cohorts/CreateCohort";
 import {
   makeStyles,
   MenuItem,
   Menu,
-  List,
   Typography,
   Divider,
   IconButton,
@@ -36,30 +30,14 @@ import MoreIcon from "@material-ui/icons/More";
 import MainListItems from "./SideNav";
 
 import { SecondaryListItems } from "./SideNav";
-import Objectives from "./Solutions/Objectives";
-import Skills from "./Solutions/Skills";
-import JobRoles from "./Solutions/JobRoles";
-import Certifications from "./Solutions/Certifications";
-import Courses from "./Solutions/Courses";
-import Settings from "./Solutions/Settings";
-import Projects from "./Solutions/Projects";
-import AdminPage from "./AdminPage";
-import Content from "./Solutions/Content";
-import Evaluation from "./Solutions/Evaluation";
-import CreateSkill from "./Solutions/CreateSkill";
-import CreateProject from "./Solutions/CreateProject";
-import CreateTask from "./Solutions/CreateTask";
 
-import CreateCourse from "./Solutions/Courses/CreateCourse";
-import CreateSkillCertification from "./CreateSkillCertification";
-import MyCohorts from "./learnSme/MyCohorts";
-import Cohorts from "./ops/Cohorts";
-import Participants from "./ops/Participants";
-import OpsCourses from "./ops/OpsCourses";
-import CohortView from "./ops/CohortView";
-import ViewCourse from "./ops/ViewCourse";
-import LearnCohort from "./learnSme/LearnCohort";
-import LearnObjectives from "./learnSme/LearnObjectives";
+import CreateNewCourse from "../components/Courses/CreateNewCourse";
+import CoursePlan from "../components/Courses/CoursePlan";
+import CreateCohort from "../components/Cohorts/CreateCohort";
+import AdminPage from "./AdminPage";
+import Cohorts from "../components/Cohorts/Cohorts";
+import Courses from "../components/Courses/Courses";
+import CohortView from "../components/Cohorts/CohortView";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -354,62 +332,21 @@ function HomePage(props) {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Router history={history}>
-          <Route path="/objectives" component={Objectives} />
-          <Route path="/skills" component={Skills} />
           <PrivateRoute
             path="/admin"
             roles={[Role.Admin]}
             component={AdminPage}
           />
-          <Route path="/createskill" component={CreateSkill} />
-          <Route path="/content" component={Content} />
-          <Route path="/evaluation" component={Evaluation} />
-          <Route path="/jobroles" component={JobRoles} />
-          <Route path="/createjobrole" component={CreateJobRoles} />
-          <Route path="/createjobroles" component={CreateJobRoles} />
-
-          <Route path="/certifications" component={Certifications} />
-          <Route
-            path="/createJobrolecertifications"
-            component={CreateJobRoleCertifications}
-          />
-          <Route
-            path="/createskillcertification"
-            component={CreateSkillCertification}
-          />
-
-          <Route path="/projects" component={Projects} />
-
-          <Route path="/createproject" component={CreateProject} />
-          <Route path="/createtask" component={CreateTask} />
 
           <Route path="/courses" component={Courses} />
-          <Route path="/createcourse" component={CreateCourse} />
-          <Route path="/settings" component={Settings} />
 
-          <Route path="/viewcourse" component={ViewCourse} />
-          <Route path="/opscourses" component={OpsCourses} />
-          <Route path="/mycohort" component={MyCohorts} />
           <Route path="/cohorts" component={Cohorts} />
-          <Route path="/participants" component={Participants} />
-          <Route path="/cohortview" component={CohortView} exact />
-          <Route path="/learncohort" component={LearnCohort} exact />
-          <Route path="/learnobjectives" component={LearnObjectives} exact />
 
-
-          
           <Route path="/createnewcourses" component={CreateNewCourse} />
           <Route path="/courseplan" component={CoursePlan} />
           <Route path="/createcohorts" component={CreateCohort} />
-          {/* <Grid item xs={12} md={4} lg={3}>
-                <Paper className={fixedHeightPaper}>
 
-                </Paper>
-              </Grid>
-              <Grid item xs={12}>
-                <Paper className={classes.paper}></Paper>
-              </Grid> */}
-
+          <Route path="/cohortview" component={CohortView} />
           <Box pt={4}>
             <Copyright />
           </Box>

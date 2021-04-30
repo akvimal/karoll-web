@@ -10,26 +10,13 @@ import {
   Tab,
 } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
-import ListCourseSkill from "../Solutions/Courses/ListCourseSkill";
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginLeft: "5vh",
-    borderRadius: "1vh",
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16),
-    },
-  },
-}));
+import ListCohorts from "./ListCohorts";
 
 function Cohorts() {
   const history = useHistory();
-  console.log(history);
+
   const path = history.location.pathname;
-  console.log(path);
-  const classes = useStyles();
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -112,36 +99,7 @@ function Cohorts() {
 
       <Grid container spacing={3} style={{ marginLeft: "-5vh" }}>
         {jobroles.map((s, i) => {
-          return (
-            <Link style={{ textDecoration: "none" }}>
-              <Paper
-                variant="outlined"
-                className={classes.root}
-                style={{ marginTop: "8vh", height: "16vh" }}
-              >
-                <Grid container style={{ width: "42vh" }}>
-                  <Grid item>{s.title}</Grid>
-                  <Grid container style={{ marginTop: "-4vh" }}>
-                    <Grid
-                      item
-                      sm={9}
-                      style={{ marginLeft: "8vh", fontSize: "larger" }}
-                    >
-                      {s.course}
-                    </Grid>
-                  </Grid>
-                  <Grid container style={{ marginTop: "-4vh" }}>
-                    <Grid item sm={9}>
-                      Learners:{s.learners}
-                    </Grid>
-                    <Grid item sm={3}>
-                      SME:{s.Sme}
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Paper>
-            </Link>
-          );
+          return <ListCohorts s={s}></ListCohorts>;
         })}
       </Grid>
     </div>

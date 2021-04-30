@@ -10,8 +10,6 @@ import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
 import SignUpPage from "./Pages/SignUpPage";
 import VerifyPage from "./Pages/VerifyPage";
-import SettingsPage from "./Pages/SettingsPage";
-import ModulesPage from "./Pages/ModulesPage";
 
 import "./App.css";
 class App extends React.Component {
@@ -98,7 +96,6 @@ class App extends React.Component {
           <Route path="/signup" component={SignUpPage} />
           <Route path="/verify" component={VerifyPage} />
           {/* <Route path="/settings" component={SettingsPage} /> */}
-          <Route path="/modules" component={ModulesPage} />
         </div>
       </Router>
     );
