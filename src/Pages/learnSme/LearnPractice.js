@@ -1,6 +1,4 @@
 
-
-import { Grid, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,7 +14,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { Link } from "react-router-dom";
 import LearnExercise from "./LearnExercise";
 import Progressbar from "./Progressbar";
 

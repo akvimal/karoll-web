@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Paper, Chip, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({

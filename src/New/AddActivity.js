@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Link,
@@ -9,6 +9,7 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
+import { useHistory } from "react-router";
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
@@ -24,8 +25,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 function AddActivity() {
   const classes = useStyles();
+  const [addActivityData, setAddActivityData] = useState({
+    title:"",
+    activityType:"",
+    time:"",
+    duration:""
+  }
+  );
+const  history = useHistory()
+  const addHandler = () => {
+    history.push({ state:addActivityData})
+  }
+  // console.log(history);
   const path = window.location.pathname;
-  console.log(path);
+  // console.log(path);
+  // console.log(addActivityData);
   return (
     <div>
       <Paper elevation={3} className={classes.paper}>
@@ -39,6 +53,7 @@ function AddActivity() {
           fullWidth={true}
           label="Title"
           variant="outlined"
+          onChange={(e)=>setAddActivityData({...addActivityData, title:e.target.value})}
         />
 
         <TextField
@@ -49,13 +64,14 @@ function AddActivity() {
           label="Activity Type"
           fullWidth={true}
           variant="outlined"
+          onChange={(e)=>setAddActivityData({...addActivityData, activityType:e.target.value})}
         >
           <option aria-label="None" value="" />
-          <option value={1}>Learn</option>
-          <option value={2}>Project</option>
-          <option value={3}>Exercise</option>
-          <option value={4}>Quiz</option>
-          <option value={5}>SME connect</option>
+          <option value="Learn" >Learn</option>
+          <option value="Project" >Project</option>
+          <option value="Exercise" >Exercise</option>
+          <option value="Quiz" >Quiz</option>
+          <option value="SME connect" >SME connect</option>
         </TextField>
 
         {path === "/createcohorts" ? (
@@ -90,6 +106,7 @@ function AddActivity() {
               fullWidth={true}
               label=""
               variant="outlined"
+              onChange={(e)=>setAddActivityData({...addActivityData, time:e.target.value})}
             />
           </Grid>
           <Grid item sm={6}>
@@ -100,6 +117,7 @@ function AddActivity() {
               label="Durations"
               fullWidth={true}
               variant="outlined"
+              onChange={(e)=>setAddActivityData({...addActivityData, duration:e.target.value})}
             >
               <option aria-label="None" value="" />
               <option value={1}>Hours</option>
@@ -136,6 +154,7 @@ function AddActivity() {
           variant="contained"
           color="primary"
           style={{ marginTop: "2vh" }}
+          onClick={()=>addHandler()}
         >
           Done
         </Button>

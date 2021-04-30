@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Paper, Grid } from "@material-ui/core";
-import { Router, Route, Link, Redirect } from "react-router-dom";
+import {Link } from "react-router-dom";
 function ListFeatures() {
   const [data, setdata] = useState([
     { userRole: "Annonymous", module: "Site", feature: "Feature 1" },

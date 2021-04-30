@@ -1,15 +1,14 @@
-import { Button, Grid, Typography } from '@material-ui/core';
-import React, { useState } from "react";
+import { Button, Grid,  } from '@material-ui/core';
+import React  from "react";
 
 import {
   
   Paper,
   TextField,
-  Link,
+ 
   makeStyles,
   Modal,
 } from "@material-ui/core";
-import ListLookupSkill from "../Solutions/ListLookupSkill";
 import LearnTopicList from './LearnTopicList';
 const useStyles = makeStyles((theme) => ({
   paper: {

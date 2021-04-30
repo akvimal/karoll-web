@@ -10,17 +10,12 @@ import {
   RadioGroup,
   Paper,
   Modal,
-  Checkbox,
 } from "@material-ui/core";
-import { Router, Route, Link, Redirect } from "react-router-dom";
+import { Link} from "react-router-dom";
 import clsx from "clsx";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import CreateCourseProject from "./ListCourseProject";
-import CreateCourseSkill from "./ListCourseSkill";
+
 import CourseProject from "./CourseProject";
 import CourseSkill from "./CourseSkill";
-import ListJobRoleLookup from "./ListJobRoleLookup";
 import JobRoleLookup from "./JobRoleLookup";
 
 const useStyles = makeStyles((theme) => ({

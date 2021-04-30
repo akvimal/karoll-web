@@ -19,7 +19,9 @@ const Plan = [
   { id: "2", hour: "2 Hour", course: "Java Arrays-Lecture" },
   { id: "3", hour: "1 Hour", course: "Java Functions-Lecture" },
 ];
-function ListCoursePlan() {
+function ListCoursePlan() 
+{
+  // console.log(props.location.state);
   const [characters, updateCharacters] = useState(Plan);
   function handleOnDragEnd(result) {
     if (!result.destination) return;

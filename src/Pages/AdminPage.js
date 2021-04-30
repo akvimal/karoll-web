@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import API from "../config/api";
 import { Typography } from "@material-ui/core";
 import { userService } from "../services/user.service";

@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ListJobRoleLookup from "./ListJobRoleLookup";
 const useStyles = makeStyles((theme) => ({
   paper: {

@@ -4,7 +4,6 @@ import {
   Tab,
   Tabs,
   AppBar,
-  Box,
   makeStyles,
 } from "@material-ui/core";
 import PropTypes from "prop-types";

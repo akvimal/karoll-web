@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Router, Route, Link, Redirect } from "react-router-dom";
+import { Router, Route, Link} from "react-router-dom";
 import { authenticationService } from "../services/authentication.service";
 import { userService } from "../services/user.service";
 import { history } from "../helpers/history";
@@ -15,21 +15,16 @@ import {
   makeStyles,
   MenuItem,
   Menu,
-  List,
   Typography,
   Divider,
   IconButton,
-  Badge,
-  Container,
-  Grid,
-  MenuList,
   Drawer,
   Box,
   AppBar,
   Toolbar,
   CssBaseline,
 } from "@material-ui/core";
-import { Person, NotificationsIcon, AccountCircle } from "@material-ui/icons";
+import { AccountCircle } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MoreIcon from "@material-ui/icons/More";
@@ -60,6 +55,8 @@ import CohortView from "./ops/CohortView";
 import ViewCourse from "./ops/ViewCourse";
 import LearnCohort from "./learnSme/LearnCohort";
 import LearnObjectives from "./learnSme/LearnObjectives";
+import ListCoursePlan from "../New/Courses/ListCoursePlan";
+import CourseActivityList from "../New/Courses/CourseActivityList";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -401,6 +398,11 @@ function HomePage(props) {
           <Route path="/createnewcourses" component={CreateNewCourse} />
           <Route path="/courseplan" component={CoursePlan} />
           <Route path="/createcohorts" component={CreateCohort} />
+          <Route
+            path="/listcourseplan"
+            component={ListCoursePlan}
+          />
+          <Route path="/courseactivitylist" component={CourseActivityList} />
           {/* <Grid item xs={12} md={4} lg={3}>
                 <Paper className={fixedHeightPaper}>
 

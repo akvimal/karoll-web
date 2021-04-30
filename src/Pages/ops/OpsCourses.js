@@ -7,7 +7,7 @@ import {
   Paper,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { Router, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",

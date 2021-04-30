@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Grid, TextField, Button } from "@material-ui/core";
-import { Router, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ListCourses from "../../components/ListCourses";
 function Courses() {
   return (

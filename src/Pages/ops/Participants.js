@@ -8,12 +8,10 @@ import {
   Modal,
   TextField,
   FormControl,
-  FormLabel,
   FormGroup,
   FormControlLabel,
   Checkbox,
   makeStyles,
-  FormHelperText,
 } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   paper: {

@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import {
   Button,
-  Typography,
+ 
   Grid,
   Link,
-  Paper,
-  Modal,
   TextField,
-  Checkbox,
-  makeStyles,
   TextareaAutosize,
   Slider,
 } from "@material-ui/core";

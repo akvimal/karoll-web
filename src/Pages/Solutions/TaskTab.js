@@ -1,19 +1,14 @@
 import React from "react";
 import {
-  Typography,
+ 
   Tab,
   Tabs,
   AppBar,
-  Box,
+
   makeStyles,
   Paper,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
-import Stack from "../../components/settings/Stack";
-import VersionAndTopics from "../../components/settings/VersionAndTopics";
-import StackFamily from "../../components/settings/StackFamily";
-import ContentProvider from "../../components/settings/ContentProvider";
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 

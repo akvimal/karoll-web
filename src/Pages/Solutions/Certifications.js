@@ -5,9 +5,8 @@ import {
   Typography,
   TextField,
   Paper,
-  Card,
 } from "@material-ui/core";
-import { Router, Route, Link, Redirect } from "react-router-dom";
+import {  Link } from "react-router-dom";
 function Certifications() {
   return (
     <div style={{ padding: "20px" }}>

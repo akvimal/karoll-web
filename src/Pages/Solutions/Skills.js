@@ -10,9 +10,8 @@ import {
   FormControlLabel,
   Checkbox,
   makeStyles,
-  FormHelperText,
 } from "@material-ui/core";
-import { Router, Route, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ViewSkills from "../../components/ViewSkills";
 const useStyles = makeStyles((theme) => ({
   root: {

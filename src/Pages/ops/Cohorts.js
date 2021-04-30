@@ -4,13 +4,9 @@ import {
   Paper,
   Grid,
   TextField,
-  Checkbox,
   Button,
-  Tabs,
-  Tab,
 } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
-import ListCourseSkill from "../Solutions/Courses/ListCourseSkill";
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: "5vh",

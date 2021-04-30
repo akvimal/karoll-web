@@ -1,5 +1,5 @@
 import { Chip, Grid, TextField, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -12,6 +12,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   chip: {
@@ -28,14 +29,21 @@ const useStyles = makeStyles((theme) => ({
 function Row(props) {
   const { row, onhandleDelete } = props;
   const classes = useStyles();
-  // console.log(row);
+  const l = row;
+  // console.log(l,"Row data");
+  const [listData, setListData] = React.useState([]);
+
+
+  
+
+  console.log(listData);
   const [open, setOpen] = React.useState(false);
 
   return (
     <React.Fragment>
       <TableRow>
         <TableCell>{row.title}</TableCell>
-        <TableCell>Type: {row.type}</TableCell>
+        <TableCell>Type: {row.activityType}</TableCell>
         <TableCell>
           <div
             style={{
@@ -62,11 +70,12 @@ function Row(props) {
                 <TableHead>
                   <TableRow>
                     {/* <MoreActivityDetails
-                      chipData={props.chipData}
-                      handleStackAdd={(e)=>props.handleStack(e)}
+                      // chipData={props.chipData}
+                      // handleStackAdd={(e)=>props.handleStack(e)}
                       // handleDelete={onhandleDelete()}
                     ></MoreActivityDetails> */}
- <TextField
+
+<TextField
         style={{ marginTop: "2vh" }}
         id="outlined-multiline-static"
         label="Description"
@@ -96,23 +105,10 @@ function Row(props) {
                   className={classes.chip}
                 />
               </li> */}
-              {/* {props.activityStack.map((data) => {
-            return (
-              <li key={data.key}>
-                <Chip
-                  label={data}
-                  onDelete={props.data}
-                  className={classes.chip}
-                />
-              </li>
-            );
-          })} */}
             
           
         </Grid>
       </Grid>
-
-
                   </TableRow>
                 </TableHead>
               </Table>
@@ -125,10 +121,16 @@ function Row(props) {
 }
 
 function CourseActivityList(props) {
-  const [data, setdata] = useState([
-    { id: 1, title: "Java-Collection", type: "Learn" },
-    { id: 2, title: "Java-oops", type: "Project" },
-  ]);
+  const his = useHistory()
+  // console.log(his.location,"CAL");
+  const listData = his.location.state;
+  // const { title, activitytype,time , duration } = props.location.state;
+
+  // const [data, setdata] = useState([
+  //   { id: 1, title: "Java-Collection", type: "Learn" },
+  //   { id: 2, title: "Java-oops", type: "Project" },
+    
+  // ]);
   const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
@@ -136,17 +138,20 @@ function CourseActivityList(props) {
   };
   return (
     <>
+   {/* {listData !== undefined? <> <b> {listData.title} </b><b> {listData.activityType} </b> <b> {listData.time} {listData.duration} </b> </>:null} */}
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableBody>
-            {data.map((f, i) => (
+            
+            {listData !== undefined? 
               <Row
-                key={i}
-                row={f}
+                // key={}
+                row={listData}
                 // chipData={props.chipData}
                 // onhandleDelete={() => props.handleDelete()}
               />
-            ))}
+            : null}
+           
           </TableBody>
         </Table>
       </TableContainer>

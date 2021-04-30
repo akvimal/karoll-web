@@ -56,7 +56,7 @@ function CreateNewCourse() {
 
   const [stackData, setstackData] = React.useState([]);
 
-  const addStackHandler = (e) => {
+  const addStackHandler = (e) => {                                                 
     const cpy = [...stackData];
     if (e.key == "Enter") {
       const data = {
@@ -82,6 +82,7 @@ function CreateNewCourse() {
   const onsubmitHandler = () => {
     history.push({ pathname: "/courseplan", state: courseData });
   };
+  // console.log("Test",history);
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
@@ -162,7 +163,7 @@ function CreateNewCourse() {
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
           >
-            <AddActivity></AddActivity>
+            <AddActivity close={handleClose} ></AddActivity>
           </Modal>
         </Grid>
       </Grid>

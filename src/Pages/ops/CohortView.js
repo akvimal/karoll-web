@@ -6,17 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 // import Row from '@material-ui/core/Row';
 import Typography from "@material-ui/core/Typography";
-import {
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  Link,
-  Radio,
-  RadioGroup,
-  TextField,
-} from "@material-ui/core";
+
 import ListAttendance from "../Solutions/ListAttendance";
 import CohortMonitor from "./CohortMonitor";
 import CohortPlan from "./CohortPlan";

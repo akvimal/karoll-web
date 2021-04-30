@@ -2,16 +2,13 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListSubheader,
   makeStyles,
   Checkbox,
 } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import IconButton from "@material-ui/core/IconButton";
-import CommentIcon from "@material-ui/icons/Comment";
 
-import React, { useState } from "react";
+
+import React from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
