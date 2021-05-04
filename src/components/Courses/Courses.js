@@ -6,10 +6,11 @@ import {
   makeStyles,
   Paper,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Router, Route, Link, Redirect } from "react-router-dom";
 import ListCourse from "./ListCourse";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCourses } from "../../redux/course/courseAction";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -23,8 +24,13 @@ const useStyles = makeStyles((theme) => ({
     transform: `translate(-15%, -38%)`,
   },
 }));
+
 function Courses() {
-  const courses = useSelector((state) => state.courses);
+  const dispatch = useDispatch();
+  const courses = useSelector((state) => state.course.courses);
+  useEffect(() => {
+    dispatch(fetchCourses());
+  }, [courses]);
 
   const classes = useStyles();
   return (

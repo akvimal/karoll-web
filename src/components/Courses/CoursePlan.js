@@ -8,9 +8,12 @@ import {
   Paper,
   Modal,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AddActivity from "../AddActivity";
+import { deleteCourseById } from "../../redux/course/courseAction";
 import ListCoursePlan from "./ListCoursePlan";
+import { useHistory } from "react-router";
 const useStyles = makeStyles((theme) => ({
   chip: {
     // margin: "5px",
@@ -19,8 +22,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CoursePlan(props) {
-  console.log(props.location.state);
-  const { title, description, stack } = props.location.state;
+  const courses = useSelector((state) => state.course.course);
+
+  const { id, title, descrip } = courses;
+  const dispatch = useDispatch();
+  const history = useHistory();
+  useEffect(() => {}, [courses]);
   // const history=useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -32,14 +39,34 @@ function CoursePlan(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  const onDeleteHandler = (id) => {
+    dispatch(deleteCourseById(id));
+    history.push({ pathname: "/courses" });
+  };
 
   return (
     <div style={{ padding: "20px" }}>
-      <Typography variant="h6" gutterBottom>
-        Course Plan
-      </Typography>
+      <Grid container>
+        <Grid item xs>
+          <Typography variant="h6" gutterBottom>
+            Course Plan
+          </Typography>
+        </Grid>
+
+        <Grid item xs={2}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => onDeleteHandler(id)}
+          >
+            delete
+          </Button>
+        </Grid>
+      </Grid>
+
       {/* {datas.map((c)=>{
        return <> */}
+
       <Grid container>
         <Grid item xs={2}>
           <Typography variant="subtitle2" gutterBottom>
@@ -60,7 +87,7 @@ function CoursePlan(props) {
         </Grid>
         <Grid item xs={10}>
           <Typography variant="body2" gutterBottom>
-            {description}
+            {descrip}
           </Typography>
         </Grid>
       </Grid>
@@ -71,9 +98,9 @@ function CoursePlan(props) {
           </Typography>
         </Grid>
         <Grid item xs>
-          {stack.map((d) => {
+          {/* {stack.map((d) => {
             return <Chip className={classes.chip} label={d.label} />;
-          })}
+          })} */}
         </Grid>
       </Grid>
       {/* </>

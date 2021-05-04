@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CourseActivityList from "./CourseActivityList";
 import {
   Button,
@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
 import AddActivity from "../AddActivity";
+import { addCourses } from "../../redux/course/courseAction";
+import { useDispatch, useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
@@ -37,7 +39,9 @@ const useStyles = makeStyles((theme) => ({
 
 function CreateNewCourse() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
+  const checkShowPlan = useSelector((state) => state.course.course);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -80,8 +84,10 @@ function CreateNewCourse() {
   };
 
   const onsubmitHandler = () => {
-    history.push({ pathname: "/courseplan", state: courseData });
+    dispatch(addCourses(courseData));
+    // history.push({ pathname: "/courses" });
   };
+
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
@@ -146,7 +152,7 @@ function CreateNewCourse() {
               color="primary"
               onClick={() => onsubmitHandler()}
             >
-              Show Plan
+              Add Course
             </Button>
           ) : (
             ""
