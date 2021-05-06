@@ -8,9 +8,9 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Router, Route, Link, Redirect } from "react-router-dom";
-import ListCourse from "./ListCourse";
+import ListCourse from "../components/Courses/ListCourse";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCourses } from "../../redux/course/courseAction";
+import { fetchCourses } from "../redux/course/courseAction";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -28,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
 function Courses() {
   const dispatch = useDispatch();
   const courses = useSelector((state) => state.course.courses);
+  const check = useSelector((state) => state.course.check);
   useEffect(() => {
     dispatch(fetchCourses());
-  }, [courses]);
+  }, [check]);
 
   const classes = useStyles();
   return (

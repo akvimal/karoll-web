@@ -10,13 +10,12 @@ import {
   Tab,
 } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
-import ListCohorts from "./ListCohorts";
+import ListCohorts from "../components/Cohorts/ListCohorts";
 
 function Cohorts() {
   const history = useHistory();
 
   const path = history.location.pathname;
-
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {

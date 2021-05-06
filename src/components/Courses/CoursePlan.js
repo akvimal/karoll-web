@@ -39,6 +39,7 @@ function CoursePlan(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
   const onDeleteHandler = (id) => {
     dispatch(deleteCourseById(id));
     history.push({ pathname: "/courses" });

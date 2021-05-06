@@ -85,7 +85,7 @@ function CreateNewCourse() {
 
   const onsubmitHandler = () => {
     dispatch(addCourses(courseData));
-    // history.push({ pathname: "/courses" });
+    history.push({ pathname: "/courses" });
   };
 
   return (

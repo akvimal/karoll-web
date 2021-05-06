@@ -35,8 +35,8 @@ import CreateNewCourse from "../components/Courses/CreateNewCourse";
 import CoursePlan from "../components/Courses/CoursePlan";
 import CreateCohort from "../components/Cohorts/CreateCohort";
 import AdminPage from "./AdminPage";
-import Cohorts from "../components/Cohorts/Cohorts";
-import Courses from "../components/Courses/Courses";
+import Cohorts from "./Cohorts";
+import Courses from "./Courses";
 import CohortView from "../components/Cohorts/CohortView";
 function Copyright() {
   return (

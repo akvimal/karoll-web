@@ -5,6 +5,9 @@ import {
   FETCH_GETCOURSEBYID_REQUEST,
   FETCH_GETCOURSEBYID_FAILURE,
   FETCH_GETCOURSEBYID_SUCCESS,
+  DELETE_COURSEBYID_SUCCESS,
+  ADD_COURSE_SUCCESS,
+  ADD_COURSE_REQUEST,
 } from "./courseType";
 
 const initialState = {
@@ -14,6 +17,7 @@ const initialState = {
   load: true,
   course: "",
   err: "",
+  check: false,
 };
 
 const courseReducer = (state = initialState, action) => {
@@ -31,6 +35,13 @@ const courseReducer = (state = initialState, action) => {
       return { ...state, load: false, course: action.payload, err: "" };
     case FETCH_GETCOURSEBYID_FAILURE:
       return { ...state, load: false, course: [], err: action.payload };
+    case DELETE_COURSEBYID_SUCCESS:
+      return { ...state, check: true };
+    case ADD_COURSE_REQUEST: {
+      return { ...state, check: false };
+    }
+    case ADD_COURSE_SUCCESS:
+      return { ...state, check: true };
     default:
       return state;
   }
