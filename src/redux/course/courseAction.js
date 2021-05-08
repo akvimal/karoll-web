@@ -80,6 +80,7 @@ export const fetchCourses = () => {
   };
 };
 export const addCourses = (data) => {
+  console.log(data);
   return (dispatch) => {
     dispatch(AddCourseRequest());
     API.post(`/api/course`, data)
@@ -98,10 +99,11 @@ export const getCoursesById = (id) => {
 
 export const deleteCourseById = (id) => {
   return (dispatch) => {
-    dispatch(AddCourseRequest());
+    dispatch(DeleteCourseByIdSuccess());
     API.delete(`/api/course/${id}`)
       .then((res) => {
-        dispatch(DeleteCourseByIdSuccess());
+        // dispatch(DeleteCourseByIdSuccess());
+        Swal.fire("Congrats", `${res.data}`, "success");
       })
       .catch((e) => console.log(e));
   };

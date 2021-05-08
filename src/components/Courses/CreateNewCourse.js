@@ -13,6 +13,8 @@ import { Link, useHistory } from "react-router-dom";
 import AddActivity from "../AddActivity";
 import { addCourses } from "../../redux/course/courseAction";
 import { useDispatch, useSelector } from "react-redux";
+import StackTag from "../StackTag";
+import { fetchStack } from "../../redux/stacktag/stacktagAction";
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
@@ -40,9 +42,14 @@ const useStyles = makeStyles((theme) => ({
 function CreateNewCourse() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const classes = useStyles();
+
+  useEffect(() => {
+    dispatch(fetchStack());
+  }, []);
 
   const checkShowPlan = useSelector((state) => state.course.course);
-  const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -62,21 +69,16 @@ function CreateNewCourse() {
 
   const addStackHandler = (e) => {
     const cpy = [...stackData];
-    if (e.key == "Enter") {
-      const data = {
-        id: Math.floor(Math.random() * 100),
-        label: e.target.value,
-      };
-      cpy.push(data);
-      setstackData(cpy);
 
-      const d = {
-        title: title,
-        description: description,
-        stack: cpy,
-      };
-      setCourseData(d);
-    }
+    cpy.push(e);
+    setstackData(cpy);
+    const d = {
+      title: title,
+      description: description,
+      stack: cpy,
+    };
+    setCourseData(d);
+    // }
   };
 
   const handleDelete = (id) => () => {
@@ -84,6 +86,7 @@ function CreateNewCourse() {
   };
 
   const onsubmitHandler = () => {
+    console.log(courseData);
     dispatch(addCourses(courseData));
     history.push({ pathname: "/courses" });
   };
@@ -115,30 +118,22 @@ function CreateNewCourse() {
       />
 
       <Grid container spacing={3} style={{ marginTop: "2vh" }}>
-        <Grid item xs={3}>
-          <TextField
-            size="small"
-            id="outlined-select-currency"
-            fullWidth={true}
-            label="Stack"
-            variant="outlined"
-            onKeyPress={(e) => addStackHandler(e)}
-          />
+        <Grid item xs={4}>
+          <StackTag addStackHandler={addStackHandler}></StackTag>
         </Grid>
 
         <Grid item xs className={classes.root}>
-          {stackData.map((data) => {
+          {stackData.map((data, i) => {
             return (
-              <li key={data.id}>
+              <li key={i}>
                 <Chip
-                  label={data.label}
+                  label={data.stack}
                   onDelete={handleDelete(data.id)}
                   className={classes.chip}
                 />
               </li>
             );
           })}
-          {/* {name !== undefined ? name.map((text) => <b> {text} </b>) : null} */}
         </Grid>
       </Grid>
 
@@ -152,7 +147,7 @@ function CreateNewCourse() {
               color="primary"
               onClick={() => onsubmitHandler()}
             >
-              Add Course
+              Submit
             </Button>
           ) : (
             ""

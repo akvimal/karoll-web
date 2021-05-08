@@ -22,15 +22,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CoursePlan(props) {
-  const courses = useSelector((state) => state.course.course);
-
-  const { id, title, descrip } = courses;
   const dispatch = useDispatch();
   const history = useHistory();
-  useEffect(() => {}, [courses]);
-  // const history=useHistory();
   const classes = useStyles();
+
+  const courses = useSelector((state) => state.course.course);
   const [open, setOpen] = React.useState(false);
+
+  const { id, title, descrip, tag } = courses;
+
+  useEffect(() => {}, [courses]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -76,7 +77,7 @@ function CoursePlan(props) {
         </Grid>
         <Grid item xs>
           <Typography variant="body2" gutterBottom>
-            <b> {title} </b>
+            {title}
           </Typography>
         </Grid>
       </Grid>
@@ -99,9 +100,13 @@ function CoursePlan(props) {
           </Typography>
         </Grid>
         <Grid item xs>
-          {/* {stack.map((d) => {
-            return <Chip className={classes.chip} label={d.label} />;
-          })} */}
+          {tag === undefined
+            ? ""
+            : tag.map((d) => {
+                return (
+                  <Chip className={classes.chip} key={d.id} label={d.stack} />
+                );
+              })}
         </Grid>
       </Grid>
       {/* </>
