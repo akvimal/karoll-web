@@ -10,10 +10,14 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AddActivity from "../AddActivity";
+
 import { deleteCourseById } from "../../redux/course/courseAction";
-import ListCoursePlan from "./ListCoursePlan";
+import ListCoursePlan from "./CoursePlanActivityList";
 import { useHistory } from "react-router";
+import CoursePlanActivityList from "./CoursePlanActivityList";
+import AddActivity from "../AddActivity";
+import { addActivity } from "../../redux/activity/activityAction";
+
 const useStyles = makeStyles((theme) => ({
   chip: {
     // margin: "5px",
@@ -27,11 +31,13 @@ function CoursePlan(props) {
   const classes = useStyles();
 
   const courses = useSelector((state) => state.course.course);
+  const check = useSelector((state) => state.activity.loading);
   const [open, setOpen] = React.useState(false);
 
-  const { id, title, descrip, tag } = courses;
+  const { id, title, descrip, tag, act } = courses;
 
-  useEffect(() => {}, [courses]);
+  useEffect(() => {}, [courses, check]);
+  const [activity, setactivity] = useState(act);
 
   const handleOpen = () => {
     setOpen(true);
@@ -44,6 +50,24 @@ function CoursePlan(props) {
   const onDeleteHandler = (id) => {
     dispatch(deleteCourseById(id));
     history.push({ pathname: "/courses" });
+  };
+  const onaddActivity = (title, type, time, duration) => {
+    console.log(title, type, time, duration);
+    const data = {
+      id: `${Math.floor(Math.random() * 10000)}`,
+      title: title,
+      type: type,
+      time: time,
+      duration: duration,
+      hours: duration == "hours" ? time : "",
+      days: duration == "days" ? time : "",
+      courseId: id,
+    };
+    dispatch(addActivity(data));
+    // const arr = [...activity];
+    // arr.push(data);
+    // setactivity(arr);
+    handleClose();
   };
 
   return (
@@ -126,15 +150,18 @@ function CoursePlan(props) {
         </Grid>
       </Grid>
 
-      <ListCoursePlan></ListCoursePlan>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <AddActivity></AddActivity>
+        <AddActivity onaddActivity={onaddActivity}></AddActivity>
       </Modal>
+      <CoursePlanActivityList
+        characters={act}
+        updateCharacters={setactivity}
+      ></CoursePlanActivityList>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
   DELETE_COURSEBYID_SUCCESS,
   ADD_COURSE_REQUEST,
   ADD_COURSE_SUCCESS,
+  DELETE_COURSEBYID_REQUEST,
 } from "./courseType";
 import API from "../../config/api";
 import Swal from "sweetalert2";
@@ -58,6 +59,12 @@ const DeleteCourseByIdSuccess = () => {
     type: DELETE_COURSEBYID_SUCCESS,
   };
 };
+
+const DeleteCourseByIdRequest = () => {
+  return {
+    type: DELETE_COURSEBYID_REQUEST,
+  };
+};
 const AddCourseSuccess = () => {
   return {
     type: ADD_COURSE_SUCCESS,
@@ -99,10 +106,10 @@ export const getCoursesById = (id) => {
 
 export const deleteCourseById = (id) => {
   return (dispatch) => {
-    dispatch(DeleteCourseByIdSuccess());
+    dispatch(DeleteCourseByIdRequest());
     API.delete(`/api/course/${id}`)
       .then((res) => {
-        // dispatch(DeleteCourseByIdSuccess());
+        dispatch(DeleteCourseByIdSuccess());
         Swal.fire("Congrats", `${res.data}`, "success");
       })
       .catch((e) => console.log(e));

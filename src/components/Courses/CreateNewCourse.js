@@ -66,6 +66,7 @@ function CreateNewCourse() {
   const [description, setdescription] = useState("");
 
   const [stackData, setstackData] = React.useState([]);
+  const [activity, setactivity] = useState([]);
 
   const addStackHandler = (e) => {
     const cpy = [...stackData];
@@ -91,6 +92,20 @@ function CreateNewCourse() {
     history.push({ pathname: "/courses" });
   };
 
+  const onaddActivity = (title, type, time, duration) => {
+    console.log(title, type, time, duration);
+    const data = {
+      id: Math.floor(Math.random() * 100),
+      title: title,
+      type: type,
+      time: time,
+      duration: duration,
+    };
+    const arr = [...activity];
+    arr.push(data);
+    setactivity(arr);
+    handleClose();
+  };
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
@@ -141,7 +156,7 @@ function CreateNewCourse() {
         <Grid item xs={8}></Grid>
 
         <Grid item xs>
-          {courseData != "" ? (
+          {stackData != "" ? (
             <Button
               variant="contained"
               color="primary"
@@ -153,21 +168,7 @@ function CreateNewCourse() {
             ""
           )}
         </Grid>
-        <Grid item xs>
-          <Button variant="contained" color="primary" onClick={handleOpen}>
-            Add Activity
-          </Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-          >
-            <AddActivity></AddActivity>
-          </Modal>
-        </Grid>
       </Grid>
-      <CourseActivityList></CourseActivityList>
     </div>
   );
 }
