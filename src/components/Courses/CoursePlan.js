@@ -161,6 +161,7 @@ function CoursePlan(props) {
       <CoursePlanActivityList
         characters={act}
         updateCharacters={setactivity}
+        courseId={id}
       ></CoursePlanActivityList>
     </div>
   );

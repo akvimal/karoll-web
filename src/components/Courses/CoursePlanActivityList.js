@@ -13,11 +13,18 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import UpdateActivity from "../UpdateActivity";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteActivity } from "../../redux/activity/activityAction";
 
 function CoursePlanActivityList(props) {
-  const { characters, updateCharacters } = props;
+  const dispatch = useDispatch();
+  const { characters, updateCharacters, courseId } = props;
   useEffect(() => {}, [characters]);
 
+  const onDeleteHandler = (id) => {
+    dispatch(deleteActivity(id, courseId));
+    // console.log(courseId, id);
+  };
   function handleOnDragEnd(result) {
     if (!result.destination) return;
     const items = Array.from(characters);
@@ -78,7 +85,8 @@ function CoursePlanActivityList(props) {
                               </Grid>
                               <Grid item xs={2}>
                                 <DeleteIcon
-                                  style={{ color: "blue" }}
+                                  onClick={() => onDeleteHandler(id)}
+                                  style={{ color: "blue", cursor: "pointer" }}
                                 ></DeleteIcon>
                               </Grid>
                               <Grid item xs={2}>

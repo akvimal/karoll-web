@@ -5,6 +5,9 @@ import {
   ADD_ACTIVITY_FAILURE,
   ADD_ACTIVITY_SUCCESS,
   ADD_ACTIVITY_REQUEST,
+  DELETE_ACTIVITY_FAILURE,
+  DELETE_ACTIVITY_SUCCESS,
+  DELETE_ACTIVITY_REQUEST,
 } from "./activityType";
 
 import API from "../../config/api";
@@ -47,6 +50,24 @@ const AddActivityFailure = (error) => {
     payload: error,
   };
 };
+const DeleteActivityRequest = () => {
+  return {
+    type: DELETE_ACTIVITY_REQUEST,
+  };
+};
+
+const DeleteActivitySuccess = () => {
+  return {
+    type: DELETE_ACTIVITY_SUCCESS,
+  };
+};
+
+const DeleteActivityFailure = (error) => {
+  return {
+    type: DELETE_ACTIVITY_FAILURE,
+    payload: error,
+  };
+};
 
 export const fetchActivity = () => {
   console.log("fetched");
@@ -63,6 +84,15 @@ export const addActivity = (data) => {
     dispatch(AddActivityRequest());
     API.post(`/api/activity`, data)
       .then((res) => dispatch(getCoursesById(data.courseId)))
+      .catch((e) => console.log(e));
+  };
+};
+
+export const deleteActivity = (id, courseId) => {
+  return (dispatch) => {
+    dispatch(DeleteActivityRequest());
+    API.delete(`/api/activity/${id}`)
+      .then((res) => dispatch(getCoursesById(courseId)))
       .catch((e) => console.log(e));
   };
 };
