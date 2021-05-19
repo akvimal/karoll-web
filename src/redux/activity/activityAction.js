@@ -7,6 +7,7 @@ import {
   ADD_ACTIVITY_REQUEST,
   DELETE_ACTIVITY_FAILURE,
   DELETE_ACTIVITY_SUCCESS,
+  ACTIVITYIDBY_SUCCESS,
   DELETE_ACTIVITY_REQUEST,
 } from "./activityType";
 
@@ -69,6 +70,13 @@ const DeleteActivityFailure = (error) => {
   };
 };
 
+const fetchActivityByIdSuccess = (data) => {
+  return {
+    type: ACTIVITYIDBY_SUCCESS,
+    payload: data,
+  };
+};
+
 export const fetchActivity = () => {
   console.log("fetched");
   return (dispatch) => {
@@ -76,6 +84,13 @@ export const fetchActivity = () => {
     API.get(`/api/tags`)
       .then((res) => dispatch(fetchActivitySuccess(res.data)))
       .catch((e) => dispatch(fetchActivityFailure(e)));
+  };
+};
+export const getByIdActivity = (id) => {
+  return (dispatch) => {
+    API.get(`/api/activity/${id}`)
+      .then((res) => dispatch(fetchActivityByIdSuccess(res.data)))
+      .catch((e) => console.log(e));
   };
 };
 
@@ -92,6 +107,14 @@ export const deleteActivity = (id, courseId) => {
   return (dispatch) => {
     dispatch(DeleteActivityRequest());
     API.delete(`/api/activity/${id}`)
+      .then((res) => dispatch(getCoursesById(courseId)))
+      .catch((e) => console.log(e));
+  };
+};
+export const updateActivity = (id, courseId, data) => {
+  return (dispatch) => {
+    dispatch(DeleteActivityRequest());
+    API.post(`/api/activity/${id}`, data)
       .then((res) => dispatch(getCoursesById(courseId)))
       .catch((e) => console.log(e));
   };

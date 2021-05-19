@@ -51,16 +51,14 @@ function CoursePlan(props) {
     dispatch(deleteCourseById(id));
     history.push({ pathname: "/courses" });
   };
-  const onaddActivity = (title, type, time, duration) => {
-    console.log(title, type, time, duration);
+  const onaddActivity = (title, type, timePeriod, duration) => {
+    console.log(title, type, timePeriod, duration);
     const data = {
       id: `${Math.floor(Math.random() * 10000)}`,
       title: title,
       type: type,
-      time: time,
+      timePeriod: timePeriod,
       duration: duration,
-      hours: duration == "hours" ? time : "",
-      days: duration == "days" ? time : "",
       courseId: id,
     };
     dispatch(addActivity(data));

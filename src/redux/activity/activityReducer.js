@@ -2,6 +2,7 @@ import {
   FETCH_ACTIVITY_FAILURE,
   FETCH_ACTIVITY_SUCCESS,
   ADD_ACTIVITY_SUCCESS,
+  ACTIVITYIDBY_SUCCESS,
   ADD_ACTIVITY_REQUEST,
   FETCH_ACTIVITY_REQUEST,
 } from "./activityType";
@@ -10,6 +11,7 @@ const initialState = {
   loading: true,
   ActivityData: [],
   error: "",
+  act: "",
 };
 
 const activityReducer = (state = initialState, action) => {
@@ -40,6 +42,12 @@ const activityReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case ACTIVITYIDBY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        act: action.payload,
       };
     default:
       return state;

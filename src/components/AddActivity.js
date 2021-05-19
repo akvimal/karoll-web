@@ -27,7 +27,7 @@ function AddActivity(props) {
   const classes = useStyles();
   const [title, settitle] = useState("");
   const [type, settype] = useState("");
-  const [time, settime] = useState("");
+  const [timePeriod, settimePeriod] = useState("");
   const [duration, setduration] = useState("");
   const path = window.location.pathname;
   console.log(path);
@@ -98,8 +98,8 @@ function AddActivity(props) {
               id="outlined-select-currency"
               fullWidth={true}
               label=""
-              value={time}
-              onChange={(e) => settime(e.target.value)}
+              value={duration}
+              onChange={(e) => setduration(e.target.value)}
               variant="outlined"
             />
           </Grid>
@@ -110,9 +110,9 @@ function AddActivity(props) {
               select
               label="Durations"
               fullWidth={true}
-              value={duration}
+              value={timePeriod}
               variant="outlined"
-              onChange={(e) => setduration(e.target.value)}
+              onChange={(e) => settimePeriod(e.target.value)}
             >
               <option aria-label="None" value="" />
               <option value={"hours"}>Hours</option>
@@ -150,10 +150,10 @@ function AddActivity(props) {
           color="primary"
           style={{ marginTop: "2vh" }}
           onClick={() => {
-            onaddActivity(title, type, time, duration);
+            onaddActivity(title, type, timePeriod, duration);
             settitle("");
             settype("");
-            settime("");
+            settimePeriod("");
             setduration("");
           }}
         >

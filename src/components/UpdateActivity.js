@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   Link,
@@ -9,6 +9,8 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { updateActivity } from "../redux/activity/activityAction";
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
@@ -22,7 +24,26 @@ const useStyles = makeStyles((theme) => ({
     transform: `translate(-15%, -38%)`,
   },
 }));
-function UpdateActivity() {
+function UpdateActivity(props) {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.activity.act);
+  const check = useSelector((state) => state.activity.loading);
+  const [durations, setdurations] = useState();
+  const [timePeriods, settimePeriods] = useState();
+  const { id, title, duration, timePeriod, scheduleId } = data;
+  const { courseId } = props;
+  useEffect(() => {
+    setdurations(duration);
+    settimePeriods(timePeriod);
+  }, [data, check]);
+
+  const onUpdateHandler = () => {
+    const da = {
+      timePeriod: timePeriods,
+      duration: durations,
+    };
+    dispatch(updateActivity(scheduleId, courseId, da));
+  };
   const classes = useStyles();
   return (
     <div>
@@ -31,7 +52,7 @@ function UpdateActivity() {
           Update Activity
         </Typography>
         <Typography variant="h6" gutterBottom>
-          Java Collections-Lecture
+          {title ? title : ""}
         </Typography>
         <Grid container spacing={3} style={{ marginTop: "1vh" }}>
           <Grid item sm={3}>
@@ -39,7 +60,8 @@ function UpdateActivity() {
               size="small"
               id="outlined-select-currency"
               fullWidth={true}
-              label="1"
+              value={durations !== undefined ? durations : ""}
+              onChange={(e) => setdurations(e.target.value)}
               variant="outlined"
             />
           </Grid>
@@ -48,14 +70,15 @@ function UpdateActivity() {
               size="small"
               id="outlined-select-currency"
               select
-              label="Hour"
+              label="TimePeriod"
+              value={timePeriods !== undefined ? timePeriods : ""}
+              onChange={(e) => settimePeriods(e.target.value)}
               fullWidth={true}
               variant="outlined"
             >
               <option aria-label="None" value="" />
-              <option value={1}>Java</option>
-              <option value={2}>HTML</option>
-              <option value={3}>CSS</option>
+              <option value={`hours`}>Hours</option>
+              <option value={`days`}>Days</option>
             </TextField>
           </Grid>
         </Grid>
@@ -63,6 +86,7 @@ function UpdateActivity() {
           variant="contained"
           color="primary"
           style={{ marginTop: "6vh" }}
+          onClick={() => onUpdateHandler()}
         >
           Done
         </Button>

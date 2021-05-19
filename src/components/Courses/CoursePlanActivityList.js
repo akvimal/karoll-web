@@ -14,7 +14,10 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import UpdateActivity from "../UpdateActivity";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteActivity } from "../../redux/activity/activityAction";
+import {
+  deleteActivity,
+  getByIdActivity,
+} from "../../redux/activity/activityAction";
 
 function CoursePlanActivityList(props) {
   const dispatch = useDispatch();
@@ -79,9 +82,7 @@ function CoursePlanActivityList(props) {
                                 <p>{title}</p>
                               </Grid>
                               <Grid item xs={3} style={{ fontSize: "medium" }}>
-                                {Schedule.hours != ""
-                                  ? `${Schedule.hours}-Hours`
-                                  : `${Schedule.days}-Days`}
+                                {Schedule.duration}-{Schedule.timePeriod}
                               </Grid>
                               <Grid item xs={2}>
                                 <DeleteIcon
@@ -95,19 +96,14 @@ function CoursePlanActivityList(props) {
                                     textDecoration: "underline",
                                     color: "blue",
                                   }}
-                                  onClick={handleOpen}
+                                  onClick={() => {
+                                    dispatch(getByIdActivity(id), handleOpen());
+                                    // handleOpen();
+                                  }}
                                 >
                                   {" "}
                                   Update{" "}
                                 </Link>
-                                <Modal
-                                  open={open}
-                                  onClose={handleClose}
-                                  aria-labelledby="simple-modal-title"
-                                  aria-describedby="simple-modal-description"
-                                >
-                                  <UpdateActivity></UpdateActivity>
-                                </Modal>
                               </Grid>
                             </Grid>
                             {/* </div> */}
@@ -117,7 +113,14 @@ function CoursePlanActivityList(props) {
                     );
                   })
                 : "loading"}
-
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+              >
+                <UpdateActivity courseId={courseId}></UpdateActivity>
+              </Modal>
               {/* })} */}
               {provided.placeholder}
             </ul>
