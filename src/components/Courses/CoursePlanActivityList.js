@@ -10,32 +10,40 @@ import {
 } from "@material-ui/core";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import DeleteIcon from "@material-ui/icons/Delete";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import "./style.css";
 import UpdateActivity from "../UpdateActivity";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteActivity,
   getByIdActivity,
+  updateOrderActivity,
 } from "../../redux/activity/activityAction";
 
 function CoursePlanActivityList(props) {
   const dispatch = useDispatch();
-  const { characters, updateCharacters, courseId } = props;
-  useEffect(() => {}, [characters]);
+  const { act, courseId } = props;
+
+  const [characters, updateCharacters] = useState();
+
+  useEffect(() => {
+    updateCharacters(act);
+  }, [act]);
 
   const onDeleteHandler = (id) => {
     dispatch(deleteActivity(id, courseId));
     // console.log(courseId, id);
   };
-  function handleOnDragEnd(result) {
+  const handleOnDragEnd = (result) => {
     if (!result.destination) return;
     const items = Array.from(characters);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-
     updateCharacters(items);
-  }
+
+    dispatch(updateOrderActivity(courseId, items));
+  };
+
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {

@@ -156,11 +156,14 @@ function CoursePlan(props) {
       >
         <AddActivity onaddActivity={onaddActivity}></AddActivity>
       </Modal>
-      <CoursePlanActivityList
-        characters={act}
-        updateCharacters={setactivity}
-        courseId={id}
-      ></CoursePlanActivityList>
+      {act != undefined ? (
+        <CoursePlanActivityList
+          act={act}
+          courseId={id}
+        ></CoursePlanActivityList>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

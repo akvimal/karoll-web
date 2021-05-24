@@ -20,6 +20,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
     "react-select-search": "^3.0.7",
+    "recompose": "^0.30.0",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
     "rxjs": "^6.5.5",

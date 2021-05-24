@@ -119,3 +119,11 @@ export const updateActivity = (id, courseId, data) => {
       .catch((e) => console.log(e));
   };
 };
+export const updateOrderActivity = (courseId, data) => {
+  return (dispatch) => {
+    // dispatch(DeleteActivityRequest());
+    API.put(`/api/activity`, data)
+      .then((res) => console.log("updated"))
+      .catch((e) => console.log(e));
+  };
+};
