@@ -12,6 +12,7 @@ import {
 } from "./courseType";
 
 const initialState = {
+  user: JSON.parse(localStorage.getItem("currentUser")),
   loading: true,
   courses: [],
   error: "",

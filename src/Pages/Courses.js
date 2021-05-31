@@ -11,7 +11,7 @@ import { Router, Route, Link, Redirect } from "react-router-dom";
 import ListCourse from "../components/Courses/ListCourse";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCourses } from "../redux/course/courseAction";
-
+import { authenticationService } from "../services/authentication.service";
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
 function Courses() {
   const dispatch = useDispatch();
   const courses = useSelector((state) => state.course.courses);
+
+  const [user, setuser] = useState(authenticationService.currentUserValue);
   const check = useSelector((state) => state.course.check);
   useEffect(() => {
     dispatch(fetchCourses());
@@ -39,15 +41,19 @@ function Courses() {
       <Grid container spacing={3}>
         <Grid item sm={9}>
           <Typography variant="h6" gutterBottom>
-            Courses
+            Courses {console.log(user.roles[0])}
           </Typography>
         </Grid>
         <Grid item sm={3}>
-          <Link to="createnewcourses">
-            <Button variant="contained" color="primary">
-              Create Courses{" "}
-            </Button>
-          </Link>
+          {user.roles[0] != "Learner" ? (
+            <Link to="createnewcourses">
+              <Button variant="contained" color="primary">
+                Create Courses{" "}
+              </Button>
+            </Link>
+          ) : (
+            ""
+          )}
         </Grid>
       </Grid>
 

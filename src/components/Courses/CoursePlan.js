@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { authenticationService } from "../../services/authentication.service";
 import { deleteCourseById } from "../../redux/course/courseAction";
 import ListCoursePlan from "./CoursePlanActivityList";
 import { useHistory } from "react-router";
@@ -30,6 +30,7 @@ function CoursePlan(props) {
   const history = useHistory();
   const classes = useStyles();
 
+  const [user, setuser] = useState(authenticationService.currentUserValue);
   const courses = useSelector((state) => state.course.course);
   const check = useSelector((state) => state.activity.loading);
   const [open, setOpen] = React.useState(false);
@@ -51,7 +52,7 @@ function CoursePlan(props) {
     dispatch(deleteCourseById(id));
     history.push({ pathname: "/courses" });
   };
-  const onaddActivity = (title, type, timePeriod, duration) => {
+  const onaddActivity = (title, type, timePeriod, duration, descrip) => {
     console.log(title, type, timePeriod, duration);
     const data = {
       id: `${Math.floor(Math.random() * 10000)}`,
@@ -59,6 +60,7 @@ function CoursePlan(props) {
       type: type,
       timePeriod: timePeriod,
       duration: duration,
+      descrip: descrip,
       courseId: id,
     };
     dispatch(addActivity(data));
@@ -78,13 +80,17 @@ function CoursePlan(props) {
         </Grid>
 
         <Grid item xs={2}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => onDeleteHandler(id)}
-          >
-            delete
-          </Button>
+          {user.roles[0] != "Learner" ? (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => onDeleteHandler(id)}
+            >
+              delete
+            </Button>
+          ) : (
+            ""
+          )}
         </Grid>
       </Grid>
 
@@ -135,16 +141,20 @@ function CoursePlan(props) {
       })} */}
 
       <Grid container spacing={2} style={{ marginTop: "3vh" }}>
-        <Grid item xs={10}>
+        <Grid item xs>
           <Typography variant="h6" gutterBottom>
             Structure
           </Typography>
         </Grid>
 
-        <Grid item xs>
-          <Button variant="contained" color="primary" onClick={handleOpen}>
-            Add Activity
-          </Button>
+        <Grid item xs={3}>
+          {user.roles[0] != "Learner" ? (
+            <Button variant="contained" color="primary" onClick={handleOpen}>
+              Add Topics
+            </Button>
+          ) : (
+            ""
+          )}
         </Grid>
       </Grid>
 

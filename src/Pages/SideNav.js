@@ -11,14 +11,10 @@ function MainListItems(props) {
     {
       name: "Courses",
       icons: <ListAltIcon></ListAltIcon>,
-      path: "courses",
+      path: "/courses",
     },
-    {
-      name: "Cohorts",
-      icons: <ListAltIcon></ListAltIcon>,
-      path: "cohorts",
-    },
-    { name: "Admin", icons: <PersonIcon></PersonIcon>, path: "admin" },
+
+    { name: "Admin", icons: <PersonIcon></PersonIcon>, path: "/admin" },
   ];
   const Side = sidenav
     .filter((e) => (props.isAdmin ? e : e.name !== "Admin"))

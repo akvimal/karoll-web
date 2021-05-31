@@ -27,6 +27,7 @@ function AddActivity(props) {
   const classes = useStyles();
   const [title, settitle] = useState("");
   const [type, settype] = useState("");
+  const [descrip, setdescrip] = useState("");
   const [timePeriod, settimePeriod] = useState("");
   const [duration, setduration] = useState("");
   const path = window.location.pathname;
@@ -51,6 +52,19 @@ function AddActivity(props) {
         <TextField
           style={{ marginTop: "2vh" }}
           size="small"
+          id="outlined-multiline-static"
+          label="Description"
+          value={descrip}
+          multiline
+          rows={4}
+          fullWidth={true}
+          variant="outlined"
+          onChange={(e) => setdescrip(e.target.value)}
+        />
+
+        {/* <TextField
+          style={{ marginTop: "2vh" }}
+          size="small"
           id="outlined-select-currency"
           select
           value={type}
@@ -65,7 +79,7 @@ function AddActivity(props) {
           <option value={"Exercise"}>Exercise</option>
           <option value={"Quiz"}>Quiz</option>
           <option value={"SME connect"}>SME connect</option>
-        </TextField>
+        </TextField> */}
 
         {path === "/createcohorts" ? (
           <Grid container spacing={3} style={{ marginTop: "1vh" }}>
@@ -150,7 +164,7 @@ function AddActivity(props) {
           color="primary"
           style={{ marginTop: "2vh" }}
           onClick={() => {
-            onaddActivity(title, type, timePeriod, duration);
+            onaddActivity(title, type, timePeriod, duration, descrip);
             settitle("");
             settype("");
             settimePeriod("");

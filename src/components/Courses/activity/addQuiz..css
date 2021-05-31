@@ -1,0 +1,15 @@
+.some-class {
+  float: "left";
+  clear: "none";
+}
+.radio {
+  float: left;
+  clear: none;
+  margin: 2px 0 0 2px;
+}
+.input {
+  float: left;
+  clear: none;
+  display: block;
+  padding: 0px 1em 0px 8px;
+}
