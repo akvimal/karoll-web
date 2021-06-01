@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Link,
@@ -22,8 +22,14 @@ const useStyles = makeStyles((theme) => ({
     transform: `translate(-15%, -38%)`,
   },
 }));
-function AddActivity() {
+function AddActivity(props) {
+  const { onaddActivity } = props;
   const classes = useStyles();
+  const [title, settitle] = useState("");
+  const [type, settype] = useState("");
+  const [descrip, setdescrip] = useState("");
+  const [timePeriod, settimePeriod] = useState("");
+  const [duration, setduration] = useState("");
   const path = window.location.pathname;
   console.log(path);
   return (
@@ -37,26 +43,43 @@ function AddActivity() {
           size="small"
           id="outlined-select-currency"
           fullWidth={true}
+          value={title}
           label="Title"
           variant="outlined"
+          onChange={(e) => settitle(e.target.value)}
         />
 
         <TextField
           style={{ marginTop: "2vh" }}
           size="small"
+          id="outlined-multiline-static"
+          label="Description"
+          value={descrip}
+          multiline
+          rows={4}
+          fullWidth={true}
+          variant="outlined"
+          onChange={(e) => setdescrip(e.target.value)}
+        />
+
+        {/* <TextField
+          style={{ marginTop: "2vh" }}
+          size="small"
           id="outlined-select-currency"
           select
+          value={type}
           label="Activity Type"
           fullWidth={true}
+          onChange={(e) => settype(e.target.value)}
           variant="outlined"
         >
           <option aria-label="None" value="" />
-          <option value={1}>Learn</option>
-          <option value={2}>Project</option>
-          <option value={3}>Exercise</option>
-          <option value={4}>Quiz</option>
-          <option value={5}>SME connect</option>
-        </TextField>
+          <option value={"Learn"}>Learn</option>
+          <option value={"Project"}>Project</option>
+          <option value={"Exercise"}>Exercise</option>
+          <option value={"Quiz"}>Quiz</option>
+          <option value={"SME connect"}>SME connect</option>
+        </TextField> */}
 
         {path === "/createcohorts" ? (
           <Grid container spacing={3} style={{ marginTop: "1vh" }}>
@@ -89,6 +112,8 @@ function AddActivity() {
               id="outlined-select-currency"
               fullWidth={true}
               label=""
+              value={duration}
+              onChange={(e) => setduration(e.target.value)}
               variant="outlined"
             />
           </Grid>
@@ -99,11 +124,13 @@ function AddActivity() {
               select
               label="Durations"
               fullWidth={true}
+              value={timePeriod}
               variant="outlined"
+              onChange={(e) => settimePeriod(e.target.value)}
             >
               <option aria-label="None" value="" />
-              <option value={1}>Hours</option>
-              <option value={2}>Days</option>
+              <option value={"hours"}>Hours</option>
+              <option value={"days"}>Days</option>
             </TextField>
           </Grid>
         </Grid>
@@ -136,6 +163,13 @@ function AddActivity() {
           variant="contained"
           color="primary"
           style={{ marginTop: "2vh" }}
+          onClick={() => {
+            onaddActivity(title, type, timePeriod, duration, descrip);
+            settitle("");
+            settype("");
+            settimePeriod("");
+            setduration("");
+          }}
         >
           Done
         </Button>

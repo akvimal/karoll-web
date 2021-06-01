@@ -5,6 +5,10 @@ import {
   FETCH_GETCOURSEBYID_FAILURE,
   FETCH_GETCOURSEBYID_SUCCESS,
   FETCH_GETCOURSEBYID_REQUEST,
+  DELETE_COURSEBYID_SUCCESS,
+  ADD_COURSE_REQUEST,
+  ADD_COURSE_SUCCESS,
+  DELETE_COURSEBYID_REQUEST,
 } from "./courseType";
 import API from "../../config/api";
 import Swal from "sweetalert2";
@@ -50,6 +54,28 @@ const fetchGetCourseByIdFailure = (error) => {
     payload: error,
   };
 };
+const DeleteCourseByIdSuccess = () => {
+  return {
+    type: DELETE_COURSEBYID_SUCCESS,
+  };
+};
+
+const DeleteCourseByIdRequest = () => {
+  return {
+    type: DELETE_COURSEBYID_REQUEST,
+  };
+};
+const AddCourseSuccess = () => {
+  return {
+    type: ADD_COURSE_SUCCESS,
+  };
+};
+
+const AddCourseRequest = () => {
+  return {
+    type: ADD_COURSE_REQUEST,
+  };
+};
 
 export const fetchCourses = () => {
   console.log("fetched");
@@ -61,10 +87,11 @@ export const fetchCourses = () => {
   };
 };
 export const addCourses = (data) => {
+  console.log(data);
   return (dispatch) => {
-    dispatch(fetchCoursesRequest());
+    dispatch(AddCourseRequest());
     API.post(`/api/course`, data)
-      .then((res) => dispatch(getCoursesById(res.data.id)))
+      .then((res) => dispatch(AddCourseSuccess()))
       .catch((e) => console.log(e));
   };
 };
@@ -79,8 +106,12 @@ export const getCoursesById = (id) => {
 
 export const deleteCourseById = (id) => {
   return (dispatch) => {
+    dispatch(DeleteCourseByIdRequest());
     API.delete(`/api/course/${id}`)
-      .then((res) => Swal.fire("Successfully", `${res.data}`, "success"))
+      .then((res) => {
+        dispatch(DeleteCourseByIdSuccess());
+        Swal.fire("Congrats", `${res.data}`, "success");
+      })
       .catch((e) => console.log(e));
   };
 };

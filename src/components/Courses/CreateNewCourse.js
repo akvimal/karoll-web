@@ -13,6 +13,8 @@ import { Link, useHistory } from "react-router-dom";
 import AddActivity from "../AddActivity";
 import { addCourses } from "../../redux/course/courseAction";
 import { useDispatch, useSelector } from "react-redux";
+import StackTag from "../StackTag";
+import { fetchStack } from "../../redux/stacktag/stacktagAction";
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
@@ -40,9 +42,14 @@ const useStyles = makeStyles((theme) => ({
 function CreateNewCourse() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const classes = useStyles();
+
+  useEffect(() => {
+    dispatch(fetchStack());
+  }, []);
 
   const checkShowPlan = useSelector((state) => state.course.course);
-  const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -59,24 +66,20 @@ function CreateNewCourse() {
   const [description, setdescription] = useState("");
 
   const [stackData, setstackData] = React.useState([]);
+  const [activity, setactivity] = useState([]);
 
   const addStackHandler = (e) => {
     const cpy = [...stackData];
-    if (e.key == "Enter") {
-      const data = {
-        id: Math.floor(Math.random() * 100),
-        label: e.target.value,
-      };
-      cpy.push(data);
-      setstackData(cpy);
 
-      const d = {
-        title: title,
-        description: description,
-        stack: cpy,
-      };
-      setCourseData(d);
-    }
+    cpy.push(e);
+    setstackData(cpy);
+    const d = {
+      title: title,
+      description: description,
+      stack: cpy,
+    };
+    setCourseData(d);
+    // }
   };
 
   const handleDelete = (id) => () => {
@@ -84,10 +87,25 @@ function CreateNewCourse() {
   };
 
   const onsubmitHandler = () => {
+    console.log(courseData);
     dispatch(addCourses(courseData));
-    // history.push({ pathname: "/courses" });
+    history.push({ pathname: "/courses" });
   };
 
+  const onaddActivity = (title, type, time, duration) => {
+    console.log(title, type, time, duration);
+    const data = {
+      id: Math.floor(Math.random() * 100),
+      title: title,
+      type: type,
+      time: time,
+      duration: duration,
+    };
+    const arr = [...activity];
+    arr.push(data);
+    setactivity(arr);
+    handleClose();
+  };
   return (
     <div style={{ padding: "20px" }}>
       <Typography variant="h6" gutterBottom>
@@ -115,30 +133,22 @@ function CreateNewCourse() {
       />
 
       <Grid container spacing={3} style={{ marginTop: "2vh" }}>
-        <Grid item xs={3}>
-          <TextField
-            size="small"
-            id="outlined-select-currency"
-            fullWidth={true}
-            label="Stack"
-            variant="outlined"
-            onKeyPress={(e) => addStackHandler(e)}
-          />
+        <Grid item xs={4}>
+          <StackTag addStackHandler={addStackHandler}></StackTag>
         </Grid>
 
         <Grid item xs className={classes.root}>
-          {stackData.map((data) => {
+          {stackData.map((data, i) => {
             return (
-              <li key={data.id}>
+              <li key={i}>
                 <Chip
-                  label={data.label}
+                  label={data.stack}
                   onDelete={handleDelete(data.id)}
                   className={classes.chip}
                 />
               </li>
             );
           })}
-          {/* {name !== undefined ? name.map((text) => <b> {text} </b>) : null} */}
         </Grid>
       </Grid>
 
@@ -146,33 +156,19 @@ function CreateNewCourse() {
         <Grid item xs={8}></Grid>
 
         <Grid item xs>
-          {courseData != "" ? (
+          {stackData != "" ? (
             <Button
               variant="contained"
               color="primary"
               onClick={() => onsubmitHandler()}
             >
-              Add Course
+              Submit
             </Button>
           ) : (
             ""
           )}
         </Grid>
-        <Grid item xs>
-          <Button variant="contained" color="primary" onClick={handleOpen}>
-            Add Activity
-          </Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-          >
-            <AddActivity></AddActivity>
-          </Modal>
-        </Grid>
       </Grid>
-      <CourseActivityList></CourseActivityList>
     </div>
   );
 }

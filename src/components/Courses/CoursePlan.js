@@ -10,10 +10,14 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AddActivity from "../AddActivity";
+import { authenticationService } from "../../services/authentication.service";
 import { deleteCourseById } from "../../redux/course/courseAction";
-import ListCoursePlan from "./ListCoursePlan";
+import ListCoursePlan from "./CoursePlanActivityList";
 import { useHistory } from "react-router";
+import CoursePlanActivityList from "./CoursePlanActivityList";
+import AddActivity from "../AddActivity";
+import { addActivity } from "../../redux/activity/activityAction";
+
 const useStyles = makeStyles((theme) => ({
   chip: {
     // margin: "5px",
@@ -22,15 +26,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CoursePlan(props) {
-  const courses = useSelector((state) => state.course.course);
-
-  const { id, title, descrip } = courses;
   const dispatch = useDispatch();
   const history = useHistory();
-  useEffect(() => {}, [courses]);
-  // const history=useHistory();
   const classes = useStyles();
+
+  const [user, setuser] = useState(authenticationService.currentUserValue);
+  const courses = useSelector((state) => state.course.course);
+  const check = useSelector((state) => state.activity.loading);
   const [open, setOpen] = React.useState(false);
+
+  const { id, title, descrip, tag, act } = courses;
+
+  useEffect(() => {}, [courses, check]);
+  const [activity, setactivity] = useState(act);
 
   const handleOpen = () => {
     setOpen(true);
@@ -39,9 +47,27 @@ function CoursePlan(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
   const onDeleteHandler = (id) => {
     dispatch(deleteCourseById(id));
     history.push({ pathname: "/courses" });
+  };
+  const onaddActivity = (title, type, timePeriod, duration, descrip) => {
+    console.log(title, type, timePeriod, duration);
+    const data = {
+      id: `${Math.floor(Math.random() * 10000)}`,
+      title: title,
+      type: type,
+      timePeriod: timePeriod,
+      duration: duration,
+      descrip: descrip,
+      courseId: id,
+    };
+    dispatch(addActivity(data));
+    // const arr = [...activity];
+    // arr.push(data);
+    // setactivity(arr);
+    handleClose();
   };
 
   return (
@@ -54,13 +80,17 @@ function CoursePlan(props) {
         </Grid>
 
         <Grid item xs={2}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => onDeleteHandler(id)}
-          >
-            delete
-          </Button>
+          {user.roles[0] != "Learner" ? (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => onDeleteHandler(id)}
+            >
+              delete
+            </Button>
+          ) : (
+            ""
+          )}
         </Grid>
       </Grid>
 
@@ -75,7 +105,7 @@ function CoursePlan(props) {
         </Grid>
         <Grid item xs>
           <Typography variant="body2" gutterBottom>
-            <b> {title} </b>
+            {title}
           </Typography>
         </Grid>
       </Grid>
@@ -98,37 +128,52 @@ function CoursePlan(props) {
           </Typography>
         </Grid>
         <Grid item xs>
-          {/* {stack.map((d) => {
-            return <Chip className={classes.chip} label={d.label} />;
-          })} */}
+          {tag === undefined
+            ? ""
+            : tag.map((d) => {
+                return (
+                  <Chip className={classes.chip} key={d.id} label={d.stack} />
+                );
+              })}
         </Grid>
       </Grid>
       {/* </>
       })} */}
 
       <Grid container spacing={2} style={{ marginTop: "3vh" }}>
-        <Grid item xs={10}>
+        <Grid item xs>
           <Typography variant="h6" gutterBottom>
             Structure
           </Typography>
         </Grid>
 
-        <Grid item xs>
-          <Button variant="contained" color="primary" onClick={handleOpen}>
-            Add Activity
-          </Button>
+        <Grid item xs={3}>
+          {user.roles[0] != "Learner" ? (
+            <Button variant="contained" color="primary" onClick={handleOpen}>
+              Add Topics
+            </Button>
+          ) : (
+            ""
+          )}
         </Grid>
       </Grid>
 
-      <ListCoursePlan></ListCoursePlan>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <AddActivity></AddActivity>
+        <AddActivity onaddActivity={onaddActivity}></AddActivity>
       </Modal>
+      {act != undefined ? (
+        <CoursePlanActivityList
+          act={act}
+          courseId={id}
+        ></CoursePlanActivityList>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

@@ -35,9 +35,10 @@ import CreateNewCourse from "../components/Courses/CreateNewCourse";
 import CoursePlan from "../components/Courses/CoursePlan";
 import CreateCohort from "../components/Cohorts/CreateCohort";
 import AdminPage from "./AdminPage";
-import Cohorts from "../components/Cohorts/Cohorts";
-import Courses from "../components/Courses/Courses";
+import Cohorts from "./Cohorts";
+import Courses from "./Courses";
 import CohortView from "../components/Cohorts/CohortView";
+import CohortActivity from "../components/Courses/CohortActivity";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -340,13 +341,13 @@ function HomePage(props) {
 
           <Route path="/courses" component={Courses} />
 
-          <Route path="/cohorts" component={Cohorts} />
+          {/* <Route path="/cohorts" component={Cohorts} /> */}
 
           <Route path="/createnewcourses" component={CreateNewCourse} />
           <Route path="/courseplan" component={CoursePlan} />
-          <Route path="/createcohorts" component={CreateCohort} />
-
-          <Route path="/cohortview" component={CohortView} />
+          {/* <Route path="/createcohorts" component={CreateCohort} /> */}
+          <Route path="/activity/:id" component={CohortActivity} />
+          {/* <Route path="/cohortview" component={CohortView} /> */}
           <Box pt={4}>
             <Copyright />
           </Box>
